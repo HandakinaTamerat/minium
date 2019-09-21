@@ -1,20 +1,30 @@
+### LOGIN
+POST http://localhost:4000/api/login
+Content-Type: application/json
+
+{
+    "email": "a1@a.com",
+    "password": "123123"
+}
+
+### REGISTER
+POST http://localhost:4000/api/register
+Content-Type: application/json
+
+{
+    "email": "a2@a.com",
+    "password": "123123"
+}
+
+### add post
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+    "title": "a title",
+    "description": "a very long description"
+}
+
+### get posts
 GET http://localhost:3000/api/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWQ4NjYxM2IzMWZhMTkyY2FlOWU4MjdiIiwiaWF0IjoxNTY5MDg3ODAzfQ.dgTJreAl8H5QGnzmBt2GKEpe8js1-gsm4vYCH5S4P1M
-
-###
-POST http://localhost:3000/api/login
-Content-Type: application/json
-
-{
-    "email": "a@a.com",
-    "password": "123123"
-}
-
-###
-POST http://localhost:3000/api/register
-Content-Type: application/json
-
-{
-    "email": "a@a.com",
-    "password": "123123"
-}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIkX18iOnsic3RyaWN0TW9kZSI6dHJ1ZSwic2VsZWN0ZWQiOnt9LCJnZXR0ZXJzIjp7fSwiX2lkIjoiNWQ4Njc2MTdlNzgzZmYzOTM3YjEzZGRlIiwid2FzUG9wdWxhdGVkIjpmYWxzZSwiYWN0aXZlUGF0aHMiOnsicGF0aHMiOnsiX2lkIjoiaW5pdCIsImVtYWlsIjoiaW5pdCIsInBhc3N3b3JkIjoiaW5pdCIsIl9fdiI6ImluaXQifSwic3RhdGVzIjp7Imlnbm9yZSI6e30sImRlZmF1bHQiOnt9LCJpbml0Ijp7Il9pZCI6dHJ1ZSwiZW1haWwiOnRydWUsInBhc3N3b3JkIjp0cnVlLCJfX3YiOnRydWV9LCJtb2RpZnkiOnt9LCJyZXF1aXJlIjp7fX0sInN0YXRlTmFtZXMiOlsicmVxdWlyZSIsIm1vZGlmeSIsImluaXQiLCJkZWZhdWx0IiwiaWdub3JlIl19LCJwYXRoc1RvU2NvcGVzIjp7fSwiY2FjaGVkUmVxdWlyZWQiOnt9LCIkc2V0Q2FsbGVkIjp7fSwiZW1pdHRlciI6eyJfZXZlbnRzIjp7fSwiX2V2ZW50c0NvdW50IjowLCJfbWF4TGlzdGVuZXJzIjowfSwiJG9wdGlvbnMiOnsic2tpcElkIjp0cnVlLCJpc05ldyI6ZmFsc2UsIndpbGxJbml0Ijp0cnVlfX0sImlzTmV3IjpmYWxzZSwiX2RvYyI6eyJfaWQiOiI1ZDg2NzYxN2U3ODNmZjM5MzdiMTNkZGUiLCJlbWFpbCI6ImExQGEuY29tIiwicGFzc3dvcmQiOiIxMjMxMjMiLCJfX3YiOjB9LCIkbG9jYWxzIjp7fSwiJGluaXQiOnRydWUsImlhdCI6MTU2OTA5NTM4M30.KyuuCmDTqAxwO3F00_FmffbgAfiRu4SQqW8vVzM2iUg

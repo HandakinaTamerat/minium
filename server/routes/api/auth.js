@@ -12,8 +12,7 @@ router.post('/register', (req, res) => {
       if(err) {
           res.status(403).send({err})
       } else {
-          let payload = {subject: createdUser._id}
-          let token = jwt.sign(payload, process.env.SECRET_TOKEN)
+          let token = jwt.sign({...createdUser}, process.env.SECRET_TOKEN)
           res.status(200).send({token})
       }
   })
@@ -21,23 +20,25 @@ router.post('/register', (req, res) => {
 
 //login
 router.post('/login', (req, res) => {
-  User.findOne({email: req.body.email}, (err, user) => {
-      if(err) {
-          res.send({err})
-      } else {
-          if (!user) {
-              res.status(401).send('Invalid email')
-          } else {
-              if(user.password !== req.body.password) {
-                  res.status(401).send('Invalid password')
-              } else {
-                  let payload = {subject: user._id}
-                  let token = jwt.sign(payload, process.env.SECRET_TOKEN)
-                  res.status(200).send({token})
-              }
-          }
-      }
-  })
+//   User.findOne({email: req.body.email}, (err, user) => {
+//       if(err) {
+//           res.send({err})
+//       } else {
+//           if(!user) {
+//             return res.status(401).json({
+//                 error: 'User does not exist'
+//             })
+//           }
+//         if(user.password !== req.body.password) {
+//             res.status(401).send('Invalid password')
+//         } else {
+//             const token = jwt.sign({...user}, process.env.SECRET_TOKEN)
+//             res.status(200).json({token})
+//         }
+//       }
+//   })
+console.log(req.body)
 })
+
 
 module.exports = router;
