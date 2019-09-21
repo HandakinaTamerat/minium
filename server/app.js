@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const connectToDb = require('./db')
+var cors = require('cors')
+
 
 const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/api/posts');
@@ -19,6 +21,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/api', postsRouter);
+
+app.use(cors())
+
 
 app.listen(3000, _ => console.log('listening on port 3000'))
 

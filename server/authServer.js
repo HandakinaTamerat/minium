@@ -3,6 +3,7 @@ const express = require('express');
 const connectToDb = require('./db')
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+var cors = require('cors')
 
 const app = express();
 
@@ -15,8 +16,9 @@ app.use(cookieParser());
 // connect to db
 connectToDb();
 
-
 app.use('/api', authRouter);
 
-app.listen(4000, _ => console.log('listening on port 4000'))
+app.use(cors())
 
+
+app.listen(4000, _ => console.log('listening on port 4000'))
