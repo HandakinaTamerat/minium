@@ -1,0 +1,20 @@
+GET http://localhost:3000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWQ4NjYxM2IzMWZhMTkyY2FlOWU4MjdiIiwiaWF0IjoxNTY5MDg3ODAzfQ.dgTJreAl8H5QGnzmBt2GKEpe8js1-gsm4vYCH5S4P1M
+
+###
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "a@a.com",
+    "password": "123123"
+}
+
+###
+POST http://localhost:3000/api/register
+Content-Type: application/json
+
+{
+    "email": "a@a.com",
+    "password": "123123"
+}

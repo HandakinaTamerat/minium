@@ -3,9 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose')
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/api/auth');
 
 var app = express();
 
@@ -17,6 +18,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api', indexRouter);
+
+app.listen(3000, _ => console.log('listening on port 3000'))
+
+// connect to db
+const dbUrl = `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@cluster0-h3xef.gcp.mongodb.net/minium?retryWrites=true&w=majority`
+mongoose.connect(dbUrl, { useNewUrlParser: true }).
+then(res => console.log('connected to db...')).
+catch(error => handleError(error));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
