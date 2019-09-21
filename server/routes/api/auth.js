@@ -12,8 +12,8 @@ router.post('/register', (req, res) => {
       if(err) {
           res.status(403).send({err})
       } else {
-          let payload = {subject: createdUser._id}
-          let token = jwt.sign(payload, process.env.SECRET_TOKEN)
+          console.log(createdUser)
+          let token = generateAccessToken(createdUser)
           res.status(200).send({token})
       }
   })
@@ -25,19 +25,25 @@ router.post('/login', (req, res) => {
       if(err) {
           res.send({err})
       } else {
-          if (!user) {
-              res.status(401).send('Invalid email')
-          } else {
-              if(user.password !== req.body.password) {
-                  res.status(401).send('Invalid password')
-              } else {
-                  let payload = {subject: user._id}
-                  let token = jwt.sign(payload, process.env.SECRET_TOKEN)
-                  res.status(200).send({token})
-              }
+          if(!user) {
+            return res.status(401).json({
+                error: 'User does not exist'
+            })
           }
+        if(user.password !== req.body.password) {
+            res.status(401).send('Invalid password')
+        } else {
+            const token = generateAccessToken(user)
+            const refreshToken = jwt.sign({...user}, process.env.SECRET_REFRESH_TOKEN)
+            res.status(200).json({token, refreshToken})
+        }
       }
   })
 })
+
+function generateAccessToken(user) {
+    return jwt.sign({...user}, process.env.SECRET_TOKEN, { expiresIn: '10m'})
+}
+
 
 module.exports = router;
