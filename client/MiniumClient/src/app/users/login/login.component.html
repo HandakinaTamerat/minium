@@ -1,0 +1,29 @@
+<div class="login-page">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title  >
+        Mimium
+      </mat-card-title>
+      <mat-card-subtitle>
+        Login - form
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Your user name">
+        <mat-icon matSuffix>account_box</mat-icon>
+      </mat-form-field>
+      <mat-form-field>
+          <mat-label>Password</mat-label>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+        <button  [ngStyle]="['font-size','48px']" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary">Login</button>
+      <button mat-stroked-button color="primary" id="right" >Don't have account</button>
+    </mat-card-content>
+
+  </mat-card>
+</div>
