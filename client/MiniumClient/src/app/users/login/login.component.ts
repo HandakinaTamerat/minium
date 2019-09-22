@@ -7,7 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form;
+  public form;
   constructor(private builder:FormBuilder) { }
 
   ngOnInit() {
