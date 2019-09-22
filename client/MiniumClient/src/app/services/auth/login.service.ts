@@ -13,12 +13,19 @@ export class LoginService {
   }
 
   login(user){
-    this.subscription =
-    this.http.post('http://localhost/api/login',user)
-    .subscribe(data=>{
-        console.log(data);
-    })
+    return this.http.post('/api/login',user);
   }
+
+  storeToken(obj){
+    localStorage.setItem("auth-token",obj);
+  }
+
+  getToken(){
+    return localStorage.getItem("auth-token");
+  }
+
+
+
 
   checkUserName(name){
 
