@@ -7,7 +7,19 @@ const userSchema = new Schema({
     password: String,
     first_name: String,
     last_name: String,
-    username: String
+    username: String,
+    followers: [
+        {
+            type: Schema.Types.ObjectId, 
+            ref: 'users' 
+        }
+    ],
+    following: [
+        {
+            type: Schema.Types.ObjectId, 
+            ref: 'users' 
+        }
+    ]
 })
 
 module.exports = mongoose.model('auth', userSchema, 'users')
