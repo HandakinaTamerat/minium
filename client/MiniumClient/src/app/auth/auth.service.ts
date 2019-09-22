@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   register(user){
-
+    
   }
 
 }
