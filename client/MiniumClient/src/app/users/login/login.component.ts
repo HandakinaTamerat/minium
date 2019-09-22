@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { LoginService } from 'src/app/services/auth/login.service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/auth/login.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { LoginService } from 'src/app/auth/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form;
+  public form;
   constructor(private builder:FormBuilder,private route:Router,private loginService:LoginService) { }
 
   ngOnInit() {
