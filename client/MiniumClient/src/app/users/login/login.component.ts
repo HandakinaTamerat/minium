@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,21 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   form;
-  constructor(private builder:FormBuilder) { }
+  constructor(private builder:FormBuilder,private route:Router,private authService:AuthService) { }
 
   ngOnInit() {
     this.form=this.builder.group({
-      'email':['',Validators.required,Validators.email],
-      'password':['',Validators.required,Validators.min(6)]
+      'email':['',Validators.compose([Validators.required,Validators.email])],
+      'password':['',Validators.compose([Validators.required,Validators.minLength(6)])]
     });
+  }
+
+  login(){
+    this.authService.login(this.form.value);
+  }
+
+  redirectToRigester(){
+    this.route.navigate(['/users/signup']);
   }
 
 }
