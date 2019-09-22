@@ -20,9 +20,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async login() {
-    console.log(this.form)
-    // await this.loginService.login(this.form)
+  login(){
+    this.loginService.login(this.form.value);
   }
 
   redirectToRigester(){

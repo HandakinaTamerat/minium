@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './sharedmodules/material.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './services/auth/auth.module';
 import { RouterModule } from '@angular/router';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { UsersModule } from './users/users.module';
