@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public form;
+  form;
   constructor(private builder:FormBuilder,private route:Router,private loginService:LoginService) { }
 
   ngOnInit() {
