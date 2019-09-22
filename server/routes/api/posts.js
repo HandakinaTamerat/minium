@@ -7,13 +7,13 @@ const verifyToken = require('./verifyToken')
 const router = express.Router();
 
 // get all posts
-router.get('/posts', verifyToken, async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   const posts = await Post.find({}).sort({'createdAt': -1})
   return res.status(200).send(posts)
 })
 
 // get user's posts
-router.get('/posts/user', verifyToken, async (req, res) => {
+router.get('/user', verifyToken, async (req, res) => {
   const posts = await Post.find({
     user: req.user
   })
@@ -21,7 +21,7 @@ router.get('/posts/user', verifyToken, async (req, res) => {
 })
 
 // add post
-router.post('/posts', verifyToken, async (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
     let post = new Post({...req.body})
     post.user = req.user
   try{
@@ -34,7 +34,7 @@ router.post('/posts', verifyToken, async (req, res) => {
 })
 
 // update post
-router.put('/posts/:id', verifyToken, async (req, res) => {
+router.put('/:id', verifyToken, async (req, res) => {
   const filter = {_id: req.params.id}
   const update = {...req.body}
   // new:true to return the document after update
@@ -48,7 +48,7 @@ router.put('/posts/:id', verifyToken, async (req, res) => {
 })
 
 // delete post
-router.delete('/posts/:id', verifyToken,async (req, res) => {
+router.delete('/:id', verifyToken,async (req, res) => {
   let post;
   try {
     post = await Post.deleteOne({_id: req.params.id})
@@ -57,5 +57,28 @@ router.delete('/posts/:id', verifyToken,async (req, res) => {
   }
   return res.status(200).send(post)
 })
+
+// highFive a post
+router.post('/:id/highfive', verifyToken, async (req, res) => {
+  let post
+  try {
+    post = await Post.findOne({ _id: req.params.id })
+  } catch(e) {
+    return res.status(401).send({error: 'post not found'})
+  }
+  const count = post.highFives.filter(
+    hf => hf.user == req.user._id
+  ).length
+  if(count > 9) {
+    return res.status(401).send({'Limit': 'You can only high five a post author for 10 times...'})
+  }
+  const highFive = {
+    user: req.user
+  }
+  post.highFives.push(highFive)
+  post.save()
+  return res.status(200).send(post)
+})
+
 
 module.exports = router;
