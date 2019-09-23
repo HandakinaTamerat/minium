@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
- 
+
 import { MaterialModule } from './sharedmodules/material.module';
-import { AuthModule } from './services/auth/auth.module';
 import { RouterModule } from '@angular/router';
 import { LandingpageComponent } from './landingpage/landingpage.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NavigationComponent } from './navigation/navigation.component';
+import { InterceptorService } from './services/interceptor/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -23,11 +23,10 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    AuthModule,
     RouterModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
