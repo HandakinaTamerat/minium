@@ -40,5 +40,9 @@ export class PostsService {
     return this.http.get<any>(this.getCategoriesUrl)
   }
 
+  getUserData():any{
+    localStorage.getItem("user")
+  }
+
 
 }
