@@ -37,8 +37,8 @@ router.post('/login', (req, res) => {
                 error: 'User does not exist'
             })
           }
-        bcrypt.compare(req.body.password, user.password, function(err, res) {
-            if(!res) {
+        bcrypt.compare(req.body.password, user.password, function(err, result) {
+            if(!result) {
                 return res.status(401).send('Invalid password')
             } else {
                 const token = generateAccessToken(user)
