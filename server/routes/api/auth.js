@@ -12,6 +12,7 @@ router.post('/register', (req, res) => {
 
   bcrypt.hash(userBody.password, 10, function(err, hash) {
     userBody.password = hash
+    userBody.save()
   });
 
   userBody.save((err, createdUser) => {
