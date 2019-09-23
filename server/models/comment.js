@@ -2,12 +2,15 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-const postSchema = new Schema({
-    title: {type: String, required: [true, "can't be blank"]},
-    description: String,
+const commentSchema = new Schema({
+    body: String,
     user: { 
         type: Schema.Types.ObjectId, 
         ref: 'users' 
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     },
     highFives: [
         {
@@ -17,11 +20,7 @@ const postSchema = new Schema({
                 ref: 'users'
             }
         }
-    ],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+    ]
 })
 
-module.exports = mongoose.model('posts', postSchema, 'posts')
+module.exports = mongoose.model('posts', commentSchema, 'posts')

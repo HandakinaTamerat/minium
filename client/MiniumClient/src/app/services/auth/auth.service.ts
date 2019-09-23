@@ -7,24 +7,11 @@ export class AuthService {
 
   constructor() { }
 
-  getUsers(){
-
+  storeToken(obj){
+    localStorage.setItem("auth-token",obj);
   }
 
-  login(user){
-
+  getToken(){
+    return localStorage.getItem("auth-token");
   }
-
-  checkUserName(name){
-
-  }
-  
-  checkPassword(password){
-
-  }
-
-  register(user){
-    
-  }
-
 }

@@ -9,6 +9,8 @@ var cors = require('cors')
 
 const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/api/posts');
+const usersRouter = require('./routes/api/users');
+const categoryRouter = require('./routes/api/category');
 
 const app = express();
 
@@ -20,7 +22,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api', postsRouter);
+app.use('/api/posts', postsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/categories', categoryRouter);
 
 app.use(cors())
 
@@ -36,3 +40,10 @@ app.use(function(req, res, next) {
 });
 
 module.exports = app;
+
+
+/*
+// kill node ports
+// pkill -f node
+// pkill -f nodejs
+*/

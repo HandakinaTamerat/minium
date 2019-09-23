@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public form;
+  form;
+  subscription;
+  error;
   constructor(private builder:FormBuilder,private route:Router,private loginService:LoginService) { }
 
   ngOnInit() {
@@ -20,12 +22,35 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  ngOnChange(){
+    console.log(this.error);
+  }
+
   login(){
-    this.loginService.login(this.form.value);
+    this.subscription=
+    this.loginService.login(this.form.value).subscribe(data=>{
+      this.saveToken(data);
+      this.goToHomePage();
+    },error=>{
+      const err=JSON.stringify(error.error);
+      this.error=JSON.parse(err).error
+    })
+  }
+  saveToken(data){
+    this.loginService.storeToken(data);
+  }
+
+  goToHomePage(){
+    this.route.navigate(['/posts/home']);
   }
 
   redirectToRigester(){
     this.route.navigate(['/users/signup']);
+  }
+
+  ngOnDestroy(){
+    if(this.subscription)
+    this.subscription.unsubscribe();
   }
 
 }
