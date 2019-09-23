@@ -9,17 +9,17 @@ export class InterceptorService implements HttpInterceptor {
 
   constructor(private authService:AuthService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler,): Observable<HttpEvent<any>> {
-    const authReq = req.clone({
-      headers: req.headers.set('Authorization', /* here you fetch your jwt */this.getToken())
-        .append('Access-Control-Allow-Origin', '*')
-    });
+    let authReq;
+    if(this.authService.getToken()){
+      authReq = req.clone({
+        headers: req.headers.set('Authorization', this.authService.getToken())
+          .append('Access-Control-Allow-Origin', '*')
+      });
+    }else{
+      authReq=req;
+    }
     return next.handle(authReq);
   }
 
-  getToken() {
-    let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-    return this.authService.getToken();
-  }
 
 }

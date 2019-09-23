@@ -12,7 +12,7 @@ export class LoginService {
   constructor(private http:HttpClient,private auth:AuthService) { }
 
   login(user){
-    return this.http.post(`${this.url}/login`,user);
+    return this.http.post(`${this.apiUrl}/login`,user);
   }
 
   storeToken(obj){
