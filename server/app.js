@@ -10,6 +10,7 @@ var cors = require('cors')
 const indexRouter = require('./routes/index');
 const postsRouter = require('./routes/api/posts');
 const usersRouter = require('./routes/api/users');
+const categoryRouter = require('./routes/api/category');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/posts', postsRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/categories', categoryRouter);
 
 app.use(cors())
 
