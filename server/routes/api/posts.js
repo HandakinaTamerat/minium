@@ -12,6 +12,12 @@ router.get('/', verifyToken, async (req, res) => {
   return res.status(200).send(posts)
 })
 
+// get post by id
+router.get('/:id', verifyToken, async (req, res) => {
+  const posts = await Post.findById(req.params.id).populate('user', User).populate('commets')
+  return res.status(200).send(posts)
+})
+
 // get user's posts
 router.get('/user', verifyToken, async (req, res) => {
   const posts = await Post.find({
