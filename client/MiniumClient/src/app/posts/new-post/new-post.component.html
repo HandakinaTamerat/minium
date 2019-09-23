@@ -19,7 +19,7 @@
                 <p>Categories:</p>
 
 
-                <label formArrayName="categoriesMappings"
+                <label formArrayName="categoriesMappings" class="check-box-field"
                     *ngFor="let category of newPostForm.controls.categoriesMappings.controls; let i = index">
 
                     <mat-checkbox matInput type="checkbox" [formControlName]="i"> {{categoryList[i].name}}
@@ -29,8 +29,9 @@
                 <br>
 
                 <div>
-                        <button mat-raised-button color="primary" [disabled]="loading || !newPostForm.valid" class="float-right" type="submit"> Save
-                                post</button>
+                    <button mat-raised-button color="primary" [disabled]="loading || !newPostForm.valid"
+                        class="float-right" type="submit"> Save
+                        post</button>
                 </div>
 
 

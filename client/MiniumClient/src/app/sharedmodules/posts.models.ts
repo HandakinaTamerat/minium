@@ -18,11 +18,12 @@ export class Post{
 export class HighFive{
     createdAt: Date
     user: User
+    
 }
  
 export class Comment{
     body: string
     user: any
     createdAt: Date
-    replyies: Comment[]
+     
 }

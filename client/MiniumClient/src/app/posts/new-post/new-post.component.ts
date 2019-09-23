@@ -13,11 +13,14 @@ import { Router } from '@angular/router';
 export class NewPostComponent implements OnInit {
 
   newPostForm: FormGroup
-  categoryList: any[] = [{ name: 'coding' }, { name: 'testing' }]
-
-  editorStyle = {
-    height: '300px!important;'
-  }
+  categoryList: any[] = [
+    { name: 'Startup ' },
+    { name: 'Life' },
+    { name: 'Politics' },
+    { name: 'Life Lesson' },
+    { name: 'Travel' },
+    { name: 'Entrepreneurship ' }, 
+  ]
 
   loading: boolean = false;
   errorOccured: boolean = false;
