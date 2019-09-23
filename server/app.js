@@ -38,3 +38,10 @@ app.use(function(req, res, next) {
 });
 
 module.exports = app;
+
+
+/*
+// kill node ports
+// pkill -f node
+// pkill -f nodejs
+*/

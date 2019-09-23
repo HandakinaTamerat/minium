@@ -21,7 +21,3 @@
     "pug": "2.0.0-beta11"
   }
 }
-
-// kill node ports
-// pkill -f node
-// pkill -f nodejs
