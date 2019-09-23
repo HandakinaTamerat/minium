@@ -26,7 +26,7 @@ import { InterceptorService } from './services/interceptor/interceptor.service';
     RouterModule,
     HttpClientModule
   ],
-  providers: [{provide:HTTP_INTERCEPTORS,useClass:InterceptorService,multi:true}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
