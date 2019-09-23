@@ -10,11 +10,13 @@ import { RouterModule } from '@angular/router';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
