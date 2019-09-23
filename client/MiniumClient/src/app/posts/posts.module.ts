@@ -4,10 +4,13 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { SinglePostComponent } from './single-post/single-post.component';
 import { PostListingComponent } from './post-listing/post-listing.component';
 import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '../sharedmodules/material.module';
+import { QuillModule } from 'ngx-quill'
 
 const routes: Routes = [
-  {path:'post', component: NewPostComponent},
-  {path:':/postID', component: SinglePostComponent},
+  {path:'newpost', component: NewPostComponent},
+  {path:':postId', component: SinglePostComponent},
   {path:'', component: PostListingComponent}
 ]
 
@@ -16,7 +19,10 @@ const routes: Routes = [
   declarations: [NewPostComponent, SinglePostComponent, PostListingComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    MaterialModule,
+    QuillModule.forRoot()
   ]
 })
 export class PostsModule { }

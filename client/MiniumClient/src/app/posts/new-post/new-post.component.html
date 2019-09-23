@@ -1,1 +1,24 @@
-<p>new-post works!</p>
+
+<form [formGroup]="newPostForm" (ngSubmit)="submitPost()">
+  
+    <label>
+      Title:
+      <input type="text" formControlName="title">
+    </label>
+  
+    <label>
+      Content:
+      
+       
+    </label>
+    <input type="submit" value="Save post"> 
+  
+  </form>
+
+  <quill-editor></quill-editor>
+
+ 
+  
+  
+
+   
