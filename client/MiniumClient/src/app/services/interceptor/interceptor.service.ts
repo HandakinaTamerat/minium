@@ -13,11 +13,7 @@ export class InterceptorService implements HttpInterceptor {
       headers: req.headers.set('Authorization', /* here you fetch your jwt */this.getToken())
         .append('Access-Control-Allow-Origin', '*')
     });
-    return next.handle(authReq).do((event: HttpEvent<any>) => {
-      if (event instanceof HttpResponse) {
-        // do stuff with response if you want
-      }
-    }, (response: HttpErrorResponse) => { });
+    return next.handle(authReq);
   }
 
   getToken() {
