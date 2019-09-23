@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { environment as env} from '../../../environments/environment'
+import { environment } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  private apiUrl = environment.authApiUrl;
   subscription;
-  url=env.authApiUrl;
   constructor(private http:HttpClient,private auth:AuthService) { }
 
   login(user){
@@ -18,6 +18,5 @@ export class LoginService {
   storeToken(obj){
     this.auth.storeToken(obj);
   }
-
 
 }

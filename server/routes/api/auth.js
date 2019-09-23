@@ -12,6 +12,7 @@ router.post('/register', (req, res) => {
 
   bcrypt.hash(userBody.password, 10, function(err, hash) {
     userBody.password = hash
+    userBody.save()
   });
 
   userBody.save((err, createdUser) => {
@@ -36,8 +37,8 @@ router.post('/login', (req, res) => {
                 error: 'User does not exist'
             })
           }
-        bcrypt.compare(req.body.password, user.password, function(err, doc) {
-            if(!res) {
+        bcrypt.compare(req.body.password, user.password, function(err, result) {
+            if(!result) {
                 return res.status(401).send('Invalid password')
             } else {
                 const token = generateAccessToken(user)
