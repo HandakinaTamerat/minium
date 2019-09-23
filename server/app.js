@@ -14,6 +14,8 @@ const categoryRouter = require('./routes/api/category');
 
 const app = express();
 
+// connect to db
+connectToDb();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,8 +33,6 @@ app.use(cors())
 
 app.listen(3000, _ => console.log('listening on port 3000'))
 
-// connect to db
-connectToDb();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

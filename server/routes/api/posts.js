@@ -1,14 +1,14 @@
 require('dotenv').config();
 const express = require('express');
-const Post = require('./../../models/post')
 const User = require('./../../models/user')
+const Post = require('./../../models/post')
 const verifyToken = require('./verifyToken')
 
 const router = express.Router();
 
 // get all posts
 router.get('/', verifyToken, async (req, res) => {
-  const posts = await Post.find({}).sort({'createdAt': -1})
+  const posts = await Post.find({}).sort({'createdAt': -1}).populate('user', User)
   return res.status(200).send(posts)
 })
 
