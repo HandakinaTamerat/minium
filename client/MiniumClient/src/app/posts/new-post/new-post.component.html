@@ -1,9 +1,9 @@
-<div class="container">
-    <div class="row">
+<div class="container mt-5">
+    <div class="row shadow p-3 mb-5 bg-white rounded">
         <div class="col">
 
         </div>
-        <div class="col-10">
+        <div class="col-10 ">
 
             <h4>New Post</h4>
             <form [formGroup]="newPostForm" (ngSubmit)="submitPost()">
@@ -13,7 +13,7 @@
 
 
                 <p>Content:</p>
-                <quill-editor [style]="editorStyle" matInput formControlName='content'></quill-editor>
+                <quill-editor [styles]="{height: '150px'}" matInput formControlName='content'></quill-editor>
                 <br>
 
                 <p>Categories:</p>

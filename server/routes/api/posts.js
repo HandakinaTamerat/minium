@@ -22,6 +22,16 @@ router.get('/:id', verifyToken, async (req, res) => {
   return res.status(200).send(posts)
 })
 
+// get posts by category
+router.get('/category/:category', verifyToken, async (req, res) => {
+  const posts = await Post.find({
+    category: {
+      $in: [req.params.category]
+    }
+  }).populate('user', User)
+  return res.status(200).send(posts)
+})
+
 // get user's posts
 router.get('/user', verifyToken, async (req, res) => {
   const posts = await Post.find({

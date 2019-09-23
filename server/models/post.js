@@ -12,7 +12,13 @@ const postSchema = new Schema({
     comments: [
         { 
             type: Schema.Types.ObjectId, 
-            ref: 'comments' 
+            ref: 'comments'
+        }
+    ],
+    category: [
+        {
+            type: Schema.Types.ObjectId, 
+            ref: 'categories' 
         }
     ],
     highFives: [
