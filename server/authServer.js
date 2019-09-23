@@ -21,4 +21,4 @@ app.use('/api', authRouter);
 app.use(cors())
 
 
-app.listen(4000, _ => console.log('listening on port 4000'))
+app.listen(3001, _ => console.log('listening on port 3001'))

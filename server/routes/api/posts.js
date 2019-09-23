@@ -7,8 +7,12 @@ const verifyToken = require('./verifyToken')
 const router = express.Router();
 
 // get all posts
-router.get('/', verifyToken, async (req, res) => {
+router.get('/:page?', verifyToken, async (req, res) => {
+  const resPerPage = 10; // results per page
+  const page = req.params.page || 1; // Page 
   const posts = await Post.find({}).sort({'createdAt': -1}).populate('user', User)
+  .skip((resPerPage * page) - resPerPage)
+  .limit(resPerPage)
   return res.status(200).send(posts)
 })
 
