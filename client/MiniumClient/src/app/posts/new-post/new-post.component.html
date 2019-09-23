@@ -1,1 +1,58 @@
-<p>new-post works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col-10">
+
+            <h4>New Post</h4>
+            <form [formGroup]="newPostForm" (ngSubmit)="submitPost()">
+                <mat-form-field class="input-full-width">
+                    <input type="text" formControlName="title" matInput placeholder="Title">
+                </mat-form-field>
+
+
+                <p>Content:</p>
+                <quill-editor [style]="editorStyle" matInput formControlName='content'></quill-editor>
+                <br>
+
+                <p>Categories:</p>
+
+
+                <label formArrayName="categoriesMappings"
+                    *ngFor="let category of newPostForm.controls.categoriesMappings.controls; let i = index">
+
+                    <mat-checkbox matInput type="checkbox" [formControlName]="i"> {{categoryList[i].name}}
+                    </mat-checkbox>
+
+                </label>
+                <br>
+
+                <div>
+                        <button mat-raised-button color="primary" [disabled]="loading || !newPostForm.valid" class="float-right" type="submit"> Save
+                                post</button>
+                </div>
+
+
+            </form>
+
+            <div>
+                <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+                <div *ngIf="successfull" class="alert alert-success" role="alert">
+                    post published!
+                </div>
+                <div *ngIf="errorOccured" class="alert alert-danger" role="alert">
+                    {{errorMessage}}
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+
+</div>

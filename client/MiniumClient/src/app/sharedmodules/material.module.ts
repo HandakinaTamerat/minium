@@ -1,17 +1,36 @@
 import { NgModule } from '@angular/core';
 
-import {  MatCardModule } from '@angular/material/card';
-import { MatInputModule} from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon'
+import {
+  MatButtonModule,
+  MatMenuModule,
+  MatIconModule,
+  MatCardModule,
+  MatSidenavModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatTooltipModule,
+  MatToolbarModule,
+  MatCheckboxModule,
+  MatGridListModule,
+  MatProgressBarModule,
+  
+} from '@angular/material';
+
+
+
 
 const modules =  [
   MatCardModule,
   MatInputModule,
   MatButtonModule,
   MatFormFieldModule,
-  MatIconModule
+  MatIconModule,
+  MatToolbarModule,
+  MatCheckboxModule,
+  MatGridListModule,
+  MatProgressBarModule,
+ 
+  
   ];
 
   @NgModule({
