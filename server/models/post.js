@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 
 const postSchema = new Schema({
     title: {type: String, required: [true, "can't be blank"]},
-    description: String,
+    content: String,
     user: { 
         type: Schema.Types.ObjectId, 
         ref: 'users' 
