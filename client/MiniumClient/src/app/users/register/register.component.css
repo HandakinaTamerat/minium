@@ -1,0 +1,13 @@
+mat-card{
+  width: 400px;
+  margin: 100px auto;
+}
+
+mat-form-field{
+  display: block;
+  margin: 5px;
+}
+
+#right{
+  float: right;
+}
