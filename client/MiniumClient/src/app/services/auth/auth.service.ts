@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   storeToken(obj){
     localStorage.setItem("auth-token",JSON.stringify(obj.token));
