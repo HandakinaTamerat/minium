@@ -13,7 +13,7 @@ router.get('/', verifyToken, async (req, res) => {
 
 // create category
 router.post('/', verifyToken, async (req, res) => {
-    const category;
+    let category;
     try{
         category = await Category.create({...req.body})
     } catch(e) {

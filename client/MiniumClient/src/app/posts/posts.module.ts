@@ -8,16 +8,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../sharedmodules/material.module';
 import { QuillModule } from 'ngx-quill';
 import { CommentsComponent } from './comments/comments.component'
+import { CategoriesComponent } from './categories/categories.component'
 
 const routes: Routes = [
   {path:'newpost', component: NewPostComponent},
+  {path:'categories',component:CategoriesComponent},
   {path:':postId', component: SinglePostComponent},
   {path:'', component: PostListingComponent}
 ]
 
 
 @NgModule({
-  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent, CommentsComponent],
+  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent, CategoriesComponent, CommentsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -8,6 +8,7 @@
     "devStartAuth": "nodemon authServer.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
@@ -19,5 +20,8 @@
     "morgan": "~1.9.1",
     "nodemon": "^1.19.2",
     "pug": "2.0.0-beta11"
+  },
+  "engines": {
+    "node": "10.16.0"
   }
 }

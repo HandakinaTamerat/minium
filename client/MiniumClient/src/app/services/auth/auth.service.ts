@@ -8,10 +8,20 @@ export class AuthService {
   constructor() { }
 
   storeToken(obj){
-    localStorage.setItem("auth-token",obj);
+    localStorage.setItem("auth-token",JSON.stringify(obj.token));
   }
 
   getToken(){
-    return localStorage.getItem("auth-token");
+    return JSON.parse(localStorage.getItem("auth-token"));
   }
+
+  storeUser(user){
+    localStorage.setItem('user-data',user);
+  }
+
+  getUser(){
+    return localStorage.getItem('user-data');
+  }
+
+
 }

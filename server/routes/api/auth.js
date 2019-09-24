@@ -2,12 +2,19 @@ require('dotenv').config();
 const express = require('express');
 const User = require('./../../models/user')
 const jwt = require('jsonwebtoken')
+var bcrypt = require('bcryptjs');
 
 const router = express.Router();
 
 // Register
 router.post('/register', (req, res) => {
   const userBody = new User(req.body)
+
+  bcrypt.hash(userBody.password, 10, function(err, hash) {
+    userBody.password = hash
+    userBody.save()
+  });
+
   userBody.save((err, createdUser) => {
       if(err) {
           res.status(403).send({err})
@@ -30,14 +37,16 @@ router.post('/login', (req, res) => {
                 error: 'User does not exist'
             })
           }
-        if(user.password !== req.body.password) {
-            res.status(401).send('Invalid password')
-        } else {
-            const token = generateAccessToken(user)
-            const refreshToken = jwt.sign({...user}, process.env.SECRET_REFRESH_TOKEN)
-            res.status(200).json({token, refreshToken})
-        }
-      }
+        bcrypt.compare(req.body.password, user.password, function(err, result) {
+            if(!result) {
+                return res.status(401).send('Invalid password')
+            } else {
+                const token = generateAccessToken(user)
+                const refreshToken = jwt.sign({...user}, process.env.SECRET_REFRESH_TOKEN)
+                return res.status(200).json({token, refreshToken})
+            }
+        }) //bycrypt
+      } // else
   })
 })
 

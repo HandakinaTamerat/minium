@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PostsService {
-  getPostsUrl = `${environment.apiUrl}/posts`
+  getPostsUrl = `${environment.apiUrl}/posts/page`
   newPostUrl = `${environment.apiUrl}/post`
   getSinglePostUrl = `${environment.apiUrl}/:postId=`
   getUserPostsUrl = `${environment.apiUrl}/userId=`
@@ -19,12 +19,12 @@ export class PostsService {
 
   constructor(public http: HttpClient) { }
 
-  getPosts():Observable<Post[]>{
-    return this.http.get<Post[]>(this.getPostsUrl)
+  getPosts():Promise<Post[]>{
+    return this.http.get<Post[]>(this.getPostsUrl).toPromise()
   }
 
-  getUserPosts(userId: string):Observable<Post[]>{
-    return this.http.get<Post[]>(this.getUserPostsUrl + userId)
+  getUserPosts(userId: string):Promise<Post[]>{
+    return this.http.get<Post[]>(this.getUserPostsUrl + userId).toPromise()
   }
 
   newPost(body: Post):Observable<any>{
@@ -32,13 +32,13 @@ export class PostsService {
     return this.http.put(this.newPostUrl, body)
   }
 
-  getPost(postId: string):Observable<Post>{
-    return this.http.get<Post>(this.getSinglePostUrl + postId)
+  getPost(postId: string):Promise<Post>{
+    return this.http.get<Post>(this.getSinglePostUrl + postId).toPromise()
   }
 
   // get category lists
-  getCategories():Observable<any>{
-    return this.http.get<any>(this.getCategoriesUrl)
+  getCategories():Promise<any>{
+    return this.http.get<any>(this.getCategoriesUrl).toPromise()
   }
 
   getUserData():any{
