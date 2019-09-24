@@ -8,7 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt'
   providedIn: 'root'
 })
 export class AuthService {
-api=env.authApiUrl;
+api=env.apiUrl;
   constructor(private http:HttpClient, public jwtHelper: JwtHelperService) { }
 
   storeToken(obj){
@@ -38,7 +38,7 @@ api=env.authApiUrl;
   isUserLoggedIn() {
     let token = localStorage.getItem('auth-token')
     return !this.jwtHelper.isTokenExpired(token);
- 
+
   }
 
 }
