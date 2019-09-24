@@ -15,8 +15,9 @@ import {
   MatProgressBarModule,
   MatChipsModule,
   MatExpansionModule,
-  MatDividerModule
-  
+  MatDividerModule,
+  MatPaginatorModule,
+  MatIconModule
 } from '@angular/material';
 
 
@@ -34,8 +35,9 @@ const modules =  [
   MatProgressBarModule,
   MatChipsModule,
   MatExpansionModule,
-  MatDividerModule
- 
+  MatDividerModule,
+  MatPaginatorModule,
+  MatIconModule
   
   ];
 

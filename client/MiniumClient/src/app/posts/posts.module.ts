@@ -15,7 +15,7 @@ const routes: Routes = [
   {path:'newpost', component: NewPostComponent, canActivate: [AuthGuard]},
   {path:'categories',component:CategoriesComponent},
   {path:':postId', component: SinglePostComponent},
-  {path:'', component: PostListingComponent}
+  {path:'page/:nb', component: PostListingComponent}
 ]
 
 
