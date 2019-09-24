@@ -10,7 +10,7 @@ import { User } from 'src/app/sharedmodules/user.models';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-  @Input() post:Post
+  @Input() post: Post
 
   loading: boolean = false;
   errorOccured: boolean = false;
@@ -21,12 +21,12 @@ export class CommentsComponent implements OnInit {
   constructor(private postService: PostsService, private fb: FormBuilder) { }
 
   commentForm: FormGroup
-  
+
   ngOnInit() {
-  this.createForm();
+    this.createForm();
   }
 
-  createForm(){
+  createForm() {
     this.commentForm = this.fb.group({
       body: ['', Validators.required]
     })
@@ -40,32 +40,57 @@ export class CommentsComponent implements OnInit {
 
     this.createForm()
   }
-  postSuccess(id) {
-    
+  postSuccess() {
     this.loading = false;
     this.errorOccured = false;
+    this.resetForm()
+    this.successfullPost = true
+
+
   }
   postError() {
     this.loading = false;
     this.errorOccured = true;
+    this.successfullPost = false;
     this.errorMessage = "Error occured please try again";
   }
 
-  saveComment(){
+  saveComment() {
     let comment: Comment = new Comment()
     comment.body = this.commentForm.controls['body'].value
     comment.user = new User()
 
-    console.log(comment)
     this.loading = true;
-    // this.postService.newPost(this.newPostForm.value).subscribe(
-    //   (res) => {
-    //     this.postSuccess(res.json()['id'])
+    this.postService.addComment(this.commentForm.value).subscribe(
+      res => {
+        console.log('new comment')
+        console.log(res)
+        let com = new Comment()      
+        com._id = res['_id']
+        com.body = res['body']
+        com.createdAt = res['createdAt']
+        com.highFives = res['highFives']
+        com.user = res['user']
+        console.log('new comment 2')
+        console.log(com)
+        this.post.comments.push(com)
+        this.postService.updatePost(this.post, this.post._id).subscribe(
+          (res) => {
+            console.log(res)
+            this.postSuccess()
 
-    //   },
-    //   (err) => {
-    //     this.postError()
-    //   }
+          },
+          (err) => {
+            this.postError()
+          }
+        )
+
+      },
+      err => {
+
+      }
+    )
+
   }
 
 

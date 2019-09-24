@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post, HighFive, Comment } from 'src/app/sharedmodules/posts.models';
 import { User } from 'src/app/sharedmodules/user.models';
 import { PostsService } from '../posts.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-post',
@@ -15,7 +15,7 @@ export class SinglePostComponent implements OnInit {
   panelOpenState = false
   post: Post
   showComments: boolean = false
-  constructor(private postService: PostsService, private route: ActivatedRoute) {
+  constructor(private postService: PostsService, private route: ActivatedRoute, private router: Router) {
       route.params.subscribe((param)=>{
         this.postId = param.postId
         console.log("id:")
@@ -51,6 +51,9 @@ export class SinglePostComponent implements OnInit {
       }
     
     )
+  }
+  getPostsByCategory(catId){
+    this.router.navigate(["/category/catId"])
   }
 
 }

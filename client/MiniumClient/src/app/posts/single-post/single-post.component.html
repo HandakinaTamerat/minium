@@ -13,8 +13,8 @@
         <mat-card-actions>
 
             <mat-chip-list>
-                <div *ngFor="let category of post.categories">
-                    <mat-chip>{{category}}</mat-chip>
+                <div *ngFor="let cat of post.category">
+                    <mat-chip (click)="getPostsByCategory(cat._id)">{{cat.name}}</mat-chip>
                 </div>
             </mat-chip-list>          
             <br>

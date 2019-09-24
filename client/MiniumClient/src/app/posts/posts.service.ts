@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class PostsService {
   getPostsUrl = `${environment.apiUrl}/posts/page`
-  newPostUrl = `${environment.apiUrl}/posts`
+  postUrl = `${environment.apiUrl}/posts`
   getSinglePostUrl = `${environment.apiUrl}/posts/`
   getUserPostsUrl = `${environment.apiUrl}/userId=`
   getCategoriesUrl = `${environment.apiUrl}/categories`
@@ -29,7 +29,7 @@ export class PostsService {
 
   newPost(body: Post):Observable<any>{
     //const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post(this.newPostUrl, body)
+    return this.http.post(this.postUrl, body)
   }
 
   getPost(postId: string):Promise<Post>{
@@ -49,8 +49,12 @@ export class PostsService {
     return this.http.post(this.highFiveUrl + id + "/highfive",{})
   }
 
-  newComment(){
-    
+  addComment(body: any){
+    return this.http.post(this.postUrl + "/comment", body)
+  }
+
+  updatePost(body: any , id: string){
+    return this.http.put(this.postUrl + "/" + id, body)
   }
 
 

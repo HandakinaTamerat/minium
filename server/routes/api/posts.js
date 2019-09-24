@@ -3,6 +3,7 @@ const express = require('express');
 const User = require('./../../models/user')
 const Post = require('./../../models/post')
 const verifyToken = require('./verifyToken')
+const Comment = require('./../../models/comment')
 
 const router = express.Router();
 
@@ -56,12 +57,14 @@ router.post('/', verifyToken, async (req, res) => {
 // update post
 router.put('/:id', verifyToken, async (req, res) => {
   const filter = {_id: req.params.id}
+
   const update = {...req.body}
   // new:true to return the document after update
   let post;
   try {
     post = await Post.findOneAndUpdate(filter, update, {new: true})
   } catch(e) {
+    console.log(e)
     return res.status(500).send({"Cast to ObjectId failed": "Post with this Id does not exist"})
   }
   return res.status(200).send(post)
@@ -98,6 +101,19 @@ router.post('/:id/highfive', verifyToken, async (req, res) => {
   post.highFives.push(highFive)
   post.save()
   return res.status(200).send(post)
+})
+
+// add comment
+router.post('/comment', verifyToken, async (req, res) => {
+  let comment = new Comment({...req.body})
+  comment.user = req.user
+try{
+  comment = await comment.save()
+  return res.status(200).send(comment)
+} catch(e) {
+  console.log(e)
+  return res.status(500).send(err)
+}
 })
 
 
