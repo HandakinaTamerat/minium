@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
     <div class="container">
     <div class="row">
     <div class="col"></div>
-    <div class="col-10"><router-outlet></router-outlet></div>
+    <div class="col-8"><router-outlet></router-outlet></div>
     <div class="col"></div>
     </div>
     </div>
