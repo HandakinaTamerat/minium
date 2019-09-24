@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@ang
 import { PostsService } from '../posts.service';
 import { Post } from 'src/app/sharedmodules/posts.models';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class NewPostComponent implements OnInit {
 
   newPostForm: FormGroup
-  categoryList: any[] = [{name:'test'}]
+  categoryList: any[] = []
 
   loading: boolean = false;
   errorOccured: boolean = false;
@@ -21,7 +22,7 @@ export class NewPostComponent implements OnInit {
   errorMessage: string;
 
 
-  constructor(private fb: FormBuilder, private postService: PostsService, private router: Router) {
+  constructor(private fb: FormBuilder, private postService: PostsService, private router: Router, private authService: AuthService) {
 
   }
 
@@ -31,23 +32,27 @@ export class NewPostComponent implements OnInit {
 
   async createForm() {
     try {
-      
-      
-
+            
       let formControls = this.categoryList.map(control => new FormControl(false));
-      let userData = this.postService.getUserData();
+      let user = this.authService.getUser()
 
       this.newPostForm = this.fb.group({
         title: ['', Validators.required],
-        user: [userData],
+        user: [user['_id']],
         content: ['', Validators.required],
         categoriesMappings: new FormArray(formControls),
         categories: ['']
       }
 
       )
+
       this.categoryList = await this.postService.getCategories()
       formControls = this.categoryList.map(control => new FormControl(false));
+      formControls.forEach((elem)=>{
+        (this.newPostForm.get('categoriesMappings') as FormArray).push(elem)
+      })
+      
+      
 
     }
     catch (e) {
@@ -86,7 +91,9 @@ export class NewPostComponent implements OnInit {
     this.loading = true;
     this.postService.newPost(this.newPostForm.value).subscribe(
       (res) => {
-        this.postSuccess(res.json()['id'])
+        console.log("response:")
+        console.log(res)
+        this.postSuccess(res['_id'])
 
       },
       (err) => {

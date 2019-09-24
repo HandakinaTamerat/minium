@@ -1,12 +1,11 @@
-<div>
+<div *ngIf="post != undefined">
     <mat-card class="example-card">
         <h2>{{post.title}}</h2>
         <mat-card-header>
-
             <div mat-card-avatar class="example-header-image"><img src="assets/imgs/profile_icon.png" width="40px">
             </div>
-            <mat-card-title>{{post.username}}test</mat-card-title>
-            <mat-card-subtitle>{{post.createdDate}}test</mat-card-subtitle>
+            <mat-card-title>{{post.username}}</mat-card-title>
+            <mat-card-subtitle>{{post.createdAt | date}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content id='post-content'>
             <div [innerHTML]="post.content"></div>
