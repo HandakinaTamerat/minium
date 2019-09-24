@@ -12,17 +12,15 @@ export class CategoriesComponent implements OnInit {
   subscription;
   constructor(private service:PostsService,private route:Router) { }
 
-  ngOnInit() {
-    this.subscription=this.service.getCategories().subscribe(data=>{
-      this.categories=data.map(elem=>elem.name);
-    },err=>{
+  async ngOnInit() {
+    try{
+      const data=await this.service.getCategories().toPromise();
+      this.categories=data.map(ele=>ele.name);
+    }catch(err){
       this.route.navigate(['/users/login']);
-    })
+    }
   }
 
-  ngOnDestroy(){
-    this.subscription.unsubscribe();
-  }
 
 
 
