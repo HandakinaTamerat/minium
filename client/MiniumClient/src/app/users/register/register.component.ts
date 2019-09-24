@@ -24,13 +24,8 @@ export class RegisterComponent implements OnInit {
   }
 
    emailValidation(control:FormControl):Promise<any> | Observable<any>{
-    const promise=new Promise((res,rej)=>{
-      if(control.value=="hello@gmail.com"){
-        res({invalid:false})
-      }else{
-        res(null)
-      }
-    });
+
+    const promise=this.registerService.checkUserEmail(control.value);
     return promise;
   }
 
@@ -38,7 +33,8 @@ export class RegisterComponent implements OnInit {
     this.subscription=
     this.registerService.register(this.form.value)
     .subscribe(data=>{
-      this.saveToken(data);
+      this.saveToken(data["token"]);
+      this.saveUserData(data["user"]);
       this.goToHomePage();
     },error=>{
       const err=JSON.stringify(error.error);
@@ -54,6 +50,9 @@ export class RegisterComponent implements OnInit {
     this.route.navigate(['/posts/home']);
   }
 
+  saveUserData(user){
+    this.registerService.storeUser(user);
+  }
 
   redirectToLogin(){
     this.route.navigate(['/users/login']);

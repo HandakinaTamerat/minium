@@ -19,9 +19,8 @@ router.post('/register', (req, res) => {
       if(err) {
           res.status(403).send({err})
       } else {
-          console.log(createdUser)
           let token = generateAccessToken(createdUser)
-          res.status(200).send({token})
+          res.status(200).send({token, user: createdUser.username})
       }
   })
 })
@@ -43,7 +42,8 @@ router.post('/login', (req, res) => {
             } else {
                 const token = generateAccessToken(user)
                 const refreshToken = jwt.sign({...user}, process.env.SECRET_REFRESH_TOKEN)
-                return res.status(200).json({token, refreshToken})
+                delete user.password
+                return res.status(200).json({token, refreshToken, user: user})
             }
         }) //bycrypt
       } // else

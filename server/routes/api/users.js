@@ -86,4 +86,21 @@ async function canFollow(followed, follower) {
     }
 }
 
+router.post('/emailcheck', async (req, res) => {
+    const email = req.body.email
+    let user
+    try {
+        user = await User.findOne({
+        email: email
+        })
+    } catch (e) {
+        return res.status(402).send('problem trying to find a user with this email')
+    }
+    
+    if(user) {
+        return res.status(200).send(true)
+    }
+        return res.status(200).send(false)
+})
+
 module.exports = router;

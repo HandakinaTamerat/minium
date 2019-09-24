@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/sharedmodules/user.models';
 
 
 @Component({
@@ -29,10 +30,11 @@ export class LoginComponent implements OnInit {
   login(){
     this.subscription=
     this.loginService.login(this.form.value).subscribe(data=>{
-      this.saveToken(data);
+      this.saveToken(JSON.stringify(data["token"]));
+      this.saveUserData(JSON.stringify(data["user"]));
       this.goToHomePage();
     },error=>{
-      if(error.error=="Invalid password") {
+      if(error.error=="Invalid Password") {
         this.error=error.error;
       }else{
         const err=JSON.stringify(error.error);
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     })
   }
-  saveToken(data){
+  saveToken(data:string){
     this.loginService.storeToken(data);
   }
 

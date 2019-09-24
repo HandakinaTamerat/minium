@@ -9,9 +9,10 @@ import { MaterialModule } from '../sharedmodules/material.module';
 import { QuillModule } from 'ngx-quill';
 import { CommentsComponent } from './comments/comments.component'
 import { CategoriesComponent } from './categories/categories.component'
+import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
-  {path:'newpost', component: NewPostComponent},
+  {path:'newpost', component: NewPostComponent, canActivate: [AuthGuard]},
   {path:'categories',component:CategoriesComponent},
   {path:':postId', component: SinglePostComponent},
   {path:'', component: PostListingComponent}
@@ -26,6 +27,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     MaterialModule,
     QuillModule.forRoot()
-  ]
+  ], 
+  providers: [AuthGuard]
 })
 export class PostsModule { }

@@ -1,14 +1,21 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { environment as env } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor() { }
+api=env.authApiUrl;
+  constructor(private http:HttpClient) { }
 
   storeToken(obj){
-    localStorage.setItem("auth-token",JSON.stringify(obj.token));
+    localStorage.setItem("auth-token",obj);
+  }
+
+  checkEmail(email){
+    return this.http.post(`${this.api}/users/emailcheck`,email);
   }
 
   getToken(){
@@ -23,5 +30,11 @@ export class AuthService {
     return localStorage.getItem('user-data');
   }
 
+  isUserLoggedIn() {
+    if( localStorage.getItem('auth-token') == null ) {
+      return false
+    }
+    return true
+  }
 
 }
