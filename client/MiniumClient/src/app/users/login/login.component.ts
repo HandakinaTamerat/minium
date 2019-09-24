@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     })
   }
-  saveToken(data){
+  saveToken(data:string){
     this.loginService.storeToken(data);
   }
 
