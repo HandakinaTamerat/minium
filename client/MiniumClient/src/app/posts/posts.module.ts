@@ -6,7 +6,8 @@ import { PostListingComponent } from './post-listing/post-listing.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../sharedmodules/material.module';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { CommentsComponent } from './comments/comments.component'
 
 const routes: Routes = [
   {path:'newpost', component: NewPostComponent},
@@ -16,7 +17,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent],
+  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent, CommentsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
