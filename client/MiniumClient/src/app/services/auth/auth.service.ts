@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { environment as env } from '../../../environments/environment'
+import { JwtHelperService } from '@auth0/angular-jwt'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-api=env.apiUrl;
-  constructor(private http:HttpClient) { }
+api=env.authApiUrl;
+  constructor(private http:HttpClient, public jwtHelper: JwtHelperService) { }
 
   storeToken(obj){
     localStorage.setItem("auth-token",obj);
@@ -35,10 +36,9 @@ api=env.apiUrl;
   }
 
   isUserLoggedIn() {
-    if( localStorage.getItem('auth-token') == null ) {
-      return false
-    }
-    return true
+    let token = localStorage.getItem('auth-token')
+    return !this.jwtHelper.isTokenExpired(token);
+ 
   }
 
 }
