@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
   MatMenuModule,
-  MatIconModule,
   MatCardModule,
   MatSidenavModule,
   MatFormFieldModule,
@@ -15,8 +14,9 @@ import {
   MatProgressBarModule,
   MatChipsModule,
   MatExpansionModule,
-  MatDividerModule
-  
+  MatDividerModule,
+  MatPaginatorModule,
+  MatIconModule
 } from '@angular/material';
 
 
@@ -34,9 +34,10 @@ const modules =  [
   MatProgressBarModule,
   MatChipsModule,
   MatExpansionModule,
-  MatDividerModule
- 
-  
+  MatDividerModule,
+  MatPaginatorModule,
+  MatIconModule
+
   ];
 
   @NgModule({
