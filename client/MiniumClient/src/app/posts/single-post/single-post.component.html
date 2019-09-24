@@ -28,6 +28,9 @@
         </mat-card-actions>
     </mat-card>
 
-    <app-comments [post]="post"></app-comments>
+    <button mat-stroked-button color="primary" (click)="showComments=!showComments" class="commentsBtn">Comments({{post.comments.length}})</button>
+
+    <app-comments [hidden]="!showComments" [post]="post"></app-comments>
 
 </div>
+

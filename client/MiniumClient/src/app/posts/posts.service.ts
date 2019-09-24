@@ -15,7 +15,7 @@ export class PostsService {
   getSinglePostUrl = `${environment.apiUrl}/:postId=`
   getUserPostsUrl = `${environment.apiUrl}/userId=`
   getCategoriesUrl = `${environment.apiUrl}/categories`
-  highFiveUrl = `${environment.apiUrl}/highFiveUrl`
+  highFiveUrl = `${environment.apiUrl}/posts/`
 
   constructor(public http: HttpClient) { }
 
@@ -29,7 +29,7 @@ export class PostsService {
 
   newPost(body: Post):Observable<any>{
     //const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.put(this.newPostUrl, body)
+    return this.http.post(this.newPostUrl, body)
   }
 
   getPost(postId: string):Promise<Post>{
@@ -45,8 +45,12 @@ export class PostsService {
     localStorage.getItem("user")
   }
 
-  highFive(body: any):Observable<any>{
-    return this.http.patch(this.highFiveUrl , body)
+  highFive(body: any, id: string):Observable<any>{
+    return this.http.put(this.highFiveUrl + id , body)
+  }
+
+  newComment(){
+    
   }
 
 
