@@ -18,7 +18,7 @@ router.get('/page/:page?', verifyToken, async (req, res) => {
 
 // get post by id
 router.get('/:id', verifyToken, async (req, res) => {
-  const posts = await Post.findById(req.params.id).populate('user', User).populate('commets')
+  const posts = await Post.findById(req.params.id).populate('user', User).populate('commets').populate('category')
   return res.status(200).send(posts)
 })
 
