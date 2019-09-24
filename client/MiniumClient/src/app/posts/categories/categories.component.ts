@@ -8,21 +8,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  categories;
-  subscription;
+  public categories;
   constructor(private service:PostsService,private route:Router) { }
 
-  async ngOnInit() {
-    try{
-      const data=await this.service.getCategories().toPromise();
-      this.categories=data.map(ele=>ele.name);
-    }catch(err){
-      this.route.navigate(['/users/login']);
-    }
+  ngOnInit() {
   }
 
+  ngOnDestroy(){
+    this.getCategories()
+  }
 
-
+  async getCategories() {
+    try {
+      this.categories = await this.service.getCategories()
+    } catch(e) {
+      console.log(e)
+    }
+  }
 
 
 

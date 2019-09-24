@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PostsService } from '../posts.service';
+import { Post } from 'src/app/sharedmodules/posts.models';
 
 @Component({
   selector: 'app-post-listing',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostListingComponent implements OnInit {
 
-  constructor() { }
+  public posts: Post[];
+
+  constructor(private postsService: PostsService) { }
 
   ngOnInit() {
+    this.getPosts()
+  }
+
+  async getPosts() {
+    this.posts = await this.postsService.getPosts();
   }
 
 }

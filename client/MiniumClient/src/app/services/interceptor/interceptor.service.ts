@@ -12,8 +12,10 @@ export class InterceptorService implements HttpInterceptor {
   authApi=env.authApiUrl;
   constructor(private authService:AuthService,private route:Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler,): Observable<HttpEvent<any>> {
+    console.log(JSON.stringify(req));
     let authReq;
     if(this.authService.getToken()){
+      console.log('yo.')
       authReq = req.clone({
         headers: req.headers.set('Authorization',  `Bearer ${this.authService.getToken()}`)
           .append('Access-Control-Allow-Origin', '*')
