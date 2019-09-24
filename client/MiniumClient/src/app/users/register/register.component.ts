@@ -24,14 +24,8 @@ export class RegisterComponent implements OnInit {
   }
 
    emailValidation(control:FormControl):Promise<any> | Observable<any>{
-     
-    const promise=new Promise((res,rej)=>{
-      if(control.value=="hello@gmail.com"){
-        res({invalid:false})
-      }else{
-        res(null)
-      }
-    });
+
+    const promise=this.registerService.checkUserEmail(control.value);
     return promise;
   }
 

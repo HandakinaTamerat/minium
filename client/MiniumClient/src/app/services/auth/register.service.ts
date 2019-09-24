@@ -15,6 +15,10 @@ export class RegisterService {
     return this.http.post(`${this.apiUrl}/register`,user);
   }
 
+  checkUserEmail(email){
+    return this.authService.checkEmail(email);
+  }
+
   storeToken(data){
     this.authService.storeToken(data);
   }
