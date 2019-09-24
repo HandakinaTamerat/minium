@@ -19,7 +19,7 @@ export class NewPostComponent implements OnInit {
     { name: 'Politics' },
     { name: 'Life Lesson' },
     { name: 'Travel' },
-    { name: 'Entrepreneurship ' }, 
+    { name: 'Entrepreneurship ' },
   ]
 
   loading: boolean = false;
