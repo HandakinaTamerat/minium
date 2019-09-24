@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RegisterService } from 'src/app/services/auth/register.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -14,12 +15,23 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.form=this.builder.group({
-      'email':['',Validators.compose([Validators.required,Validators.email])],
+      'email':['',[Validators.required,Validators.email],this.emailValidation.bind(this)],
       'first_name':['',Validators.required],
       'last_name':['',Validators.required],
       'username':['',Validators.required],
       'password':['',Validators.compose([Validators.required,Validators.minLength(6)])]
     });
+  }
+
+   emailValidation(control:FormControl):Promise<any> | Observable<any>{
+    const promise=new Promise((res,rej)=>{
+      if(control.value=="hello@gmail.com"){
+        res({invalid:false})
+      }else{
+        res(null)
+      }
+    });
+    return promise;
   }
 
   register(){

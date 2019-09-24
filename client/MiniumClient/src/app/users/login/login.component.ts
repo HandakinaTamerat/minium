@@ -29,16 +29,14 @@ export class LoginComponent implements OnInit {
   login(){
     this.subscription=
     this.loginService.login(this.form.value).subscribe(data=>{
-      // console.log(data);
       this.saveToken(data);
-      // this.saveUserData(this.form.value);
       this.goToHomePage();
     },error=>{
       if(error.error=="Invalid password") {
         this.error=error.error;
       }else{
         const err=JSON.stringify(error.error);
-      this.error=JSON.parse(err).error;
+        this.error=JSON.parse(err).error;
       }
 
     })

@@ -17,7 +17,6 @@
             <mat-form-field>
                 <mat-label>First Name</mat-label>
                 <input matInput placeholder="your fist name" formControlName="first_name">
-                <mat-hint></mat-hint>
                 <mat-error *ngIf="form.get('first_name').hasError('required')">
                   Please enter a your fist name
                 </mat-error>
@@ -26,7 +25,6 @@
             <mat-form-field>
                 <mat-label>Last Name</mat-label>
                 <input matInput placeholder="your last name" formControlName="last_name">
-                <mat-hint></mat-hint>
                 <mat-error *ngIf="form.get('last_name').hasError('required')">
                   Please enter a your last name
                 </mat-error>
@@ -35,7 +33,6 @@
             <mat-form-field>
                 <mat-label>User Name</mat-label>
                 <input matInput placeholder="select user name" formControlName="username">
-                <mat-hint></mat-hint>
                 <mat-error *ngIf="form.get('username').hasError('required')">
                   Please enter a your last name
                 </mat-error>
@@ -43,11 +40,13 @@
 
             <mat-form-field>
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="Ent your Email" formControlName="email">
+                <input matInput placeholder="Enter your Email" formControlName="email">
                 <mat-icon matSuffix>account_box</mat-icon>
-                <mat-hint></mat-hint>
-                <mat-error *ngIf="form.get('email').hasError('email') && !form.get('email').hasError('required')">
+                <mat-error *ngIf="form.get('email').hasError('required') || form.get('email').hasError('email') ">
                   Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="form.get('email').status =='INVALID' && !form.get('email').hasError('email') &&  !form.get('email').hasError('required')">
+                  Email already being used
                 </mat-error>
               </mat-form-field>
               <mat-form-field>
