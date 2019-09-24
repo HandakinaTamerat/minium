@@ -88,16 +88,16 @@ async function canFollow(followed, follower) {
 
 router.post('/emailcheck', async (req, res) => {
     const email = req.body.email
-    let user
+    let count
     try {
-        user = await User.findOne({
+        count = await User.count({
         email: email
         })
     } catch (e) {
         return res.status(402).send('problem trying to find a user with this email')
     }
     
-    if(user) {
+    if(count > 0) {
         return res.status(200).send(true)
     }
         return res.status(200).send(false)

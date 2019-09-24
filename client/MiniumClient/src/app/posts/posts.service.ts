@@ -19,8 +19,8 @@ export class PostsService {
 
   constructor(public http: HttpClient) { }
 
-  getPosts():Promise<Post[]>{
-    return this.http.get<Post[]>(this.getPostsUrl).toPromise()
+  getPosts(pageNumber: number):Promise<Post[]>{
+    return this.http.get<Post[]>(`${this.getPostsUrl}/${pageNumber}`).toPromise()
   }
 
   getUserPosts(userId: string):Promise<Post[]>{
