@@ -15,6 +15,7 @@ export class PostsService {
   getSinglePostUrl = `${environment.apiUrl}/:postId=`
   getUserPostsUrl = `${environment.apiUrl}/userId=`
   getCategoriesUrl = `${environment.apiUrl}/categories`
+  highFiveUrl = `${environment.apiUrl}/posts/`
 
   constructor(public http: HttpClient) { }
 
@@ -42,6 +43,14 @@ export class PostsService {
 
   getUserData():any{
     localStorage.getItem("user")
+  }
+
+  highFive(body: any, id: string):Observable<any>{
+    return this.http.put(this.highFiveUrl + id , body)
+  }
+
+  newComment(){
+    
   }
 
 

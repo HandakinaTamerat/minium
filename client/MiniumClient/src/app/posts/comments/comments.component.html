@@ -1,0 +1,30 @@
+
+<div class="shadow-sm p-3 mb-5 bg-white rounded">
+    <form [formGroup]="commentForm" (ngSubmit)="saveComment()">
+        
+        <mat-form-field class="comment-input">
+                <textarea formControlName="body" rows="2" matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+        <button [disabled]="loading || !commentForm.valid" mat-button type="submit">Save</button>
+    </form>
+
+    <div>
+            <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+            <div *ngIf="successfull" class="alert alert-success" role="alert">
+                post published!
+            </div>
+            <div *ngIf="errorOccured" class="alert alert-danger" role="alert">
+                {{errorMessage}}
+            </div>
+    </div>
+</div>
+
+<div *ngFor="let comment of post.comments">
+    <div class="shadow-none p-3 mb-5 bg-light rounded">
+        <p>
+            {{comment.body}}
+            <span class="float-right">{{comment.user}}</span>
+        </p>
+        
+    </div>    
+</div>

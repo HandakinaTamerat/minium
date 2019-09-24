@@ -1,8 +1,9 @@
 import { User } from './user.models'
 
 export class Post{
+    _id: string
     title: string
-    description: String
+    content: String
     user: User
     highFives: HighFive[]
     createdAt: Date
@@ -12,6 +13,7 @@ export class Post{
     constructor(){
         this.highFives = []
         this.categories = []
+        this.comments = []
     }
 }
 

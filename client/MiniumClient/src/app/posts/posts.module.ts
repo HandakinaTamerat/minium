@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../sharedmodules/material.module';
 import { QuillModule } from 'ngx-quill';
+import { CommentsComponent } from './comments/comments.component'
 import { CategoriesComponent } from './categories/categories.component'
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent, CategoriesComponent],
+  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent, CategoriesComponent, CommentsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

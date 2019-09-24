@@ -13,6 +13,9 @@ import {
   MatCheckboxModule,
   MatGridListModule,
   MatProgressBarModule,
+  MatChipsModule,
+  MatExpansionModule,
+  MatDividerModule
   
 } from '@angular/material';
 
@@ -29,6 +32,9 @@ const modules =  [
   MatCheckboxModule,
   MatGridListModule,
   MatProgressBarModule,
+  MatChipsModule,
+  MatExpansionModule,
+  MatDividerModule
  
   
   ];

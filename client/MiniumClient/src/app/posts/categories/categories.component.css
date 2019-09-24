@@ -1,0 +1,13 @@
+mat-card{
+  margin:5px;
+  padding: 15px;
+}
+
+button{
+  float: right;
+}
+mat-icon{
+  font-size: 36px;
+}
+
+
