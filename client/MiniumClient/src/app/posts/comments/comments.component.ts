@@ -63,16 +63,14 @@ export class CommentsComponent implements OnInit {
     this.loading = true;
     this.postService.addComment(this.commentForm.value).subscribe(
       res => {
-        console.log('new comment')
-        console.log(res)
+   
         let com = new Comment()      
         com._id = res['_id']
         com.body = res['body']
         com.createdAt = res['createdAt']
         com.highFives = res['highFives']
         com.user = res['user']
-        console.log('new comment 2')
-        console.log(com)
+
         this.post.comments.push(com)
         this.postService.updatePost(this.post, this.post._id).subscribe(
           (res) => {
