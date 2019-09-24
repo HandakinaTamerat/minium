@@ -42,7 +42,7 @@ router.post('/login', (req, res) => {
             } else {
                 const token = generateAccessToken(user)
                 const refreshToken = jwt.sign({...user}, process.env.SECRET_REFRESH_TOKEN)
-                return res.status(200).json({token, refreshToken, user: createdUser.username})
+                return res.status(200).json({token, refreshToken, user: user.username})
             }
         }) //bycrypt
       } // else
