@@ -51,7 +51,7 @@ router.post('/login', (req, res) => {
 })
 
 function generateAccessToken(user) {
-    return jwt.sign({...user}, process.env.SECRET_TOKEN, { expiresIn: '10m'})
+    return jwt.sign({...user}, process.env.SECRET_TOKEN, { expiresIn: '120m'})
 }
 
 
