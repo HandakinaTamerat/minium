@@ -87,6 +87,7 @@ async function canFollow(followed, follower) {
 }
 
 router.post('/emailcheck', async (req, res) => {
+
     const email = req.body.email
     let user
     try {

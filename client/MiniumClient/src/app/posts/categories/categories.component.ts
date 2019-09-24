@@ -20,6 +20,7 @@ export class CategoriesComponent implements OnInit {
     try {
       const val = await this.service.getCategories();
       this.categories=val;
+      console.log(val);
     } catch(e) {
       console.log(e)
     }

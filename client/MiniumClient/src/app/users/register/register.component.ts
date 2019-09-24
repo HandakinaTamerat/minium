@@ -24,8 +24,7 @@ export class RegisterComponent implements OnInit {
   }
 
    emailValidation(control:FormControl):Promise<any> | Observable<any>{
-
-    const promise=this.registerService.checkUserEmail(control.value);
+    const promise=this.registerService.checkUserEmail(control.value).toPromise();
     return promise;
   }
 

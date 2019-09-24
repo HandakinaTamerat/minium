@@ -20,7 +20,7 @@ export class InterceptorService implements HttpInterceptor {
           .append('Access-Control-Allow-Origin', '*')
       });
     }else{
-      if(req.url==`${this.authApi}/login` || req.url==`${this.authApi}/register` ){
+      if(req.url==`${this.authApi}/login` || req.url==`${this.authApi}/register` || req.url==`${this.authApi}/users/checkemail` ){
           authReq=req;
       }else{
           this.route.navigate(['/users/login']);

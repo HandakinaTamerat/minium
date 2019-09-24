@@ -7,7 +7,7 @@ import { environment as env } from '../../../environments/environment'
   providedIn: 'root'
 })
 export class AuthService {
-api=env.authApiUrl;
+api=env.apiUrl;
   constructor(private http:HttpClient) { }
 
   storeToken(obj){
