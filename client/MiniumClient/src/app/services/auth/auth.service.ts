@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { environment as env } from '../../../environments/environment'
 import { JwtHelperService } from '@auth0/angular-jwt'
+import { EventEmitter } from 'events';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 api=env.authApiUrl;
+  isLoggedEmitter: EventEmitter = new EventEmitter();
   constructor(private http:HttpClient, public jwtHelper: JwtHelperService) { }
 
   storeToken(obj){
@@ -34,7 +36,8 @@ api=env.authApiUrl;
   isUserLoggedIn() {
     let token = localStorage.getItem('auth-token')
     return !this.jwtHelper.isTokenExpired(token);
- 
+    
   }
+
 
 }
