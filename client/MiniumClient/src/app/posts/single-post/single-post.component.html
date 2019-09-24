@@ -1,4 +1,4 @@
-<div *ngIf="post != undefined">
+<div class="mt-5" *ngIf="post != undefined">
     <mat-card class="example-card">
         <h2>{{post.title}}</h2>
         <mat-card-header>
@@ -13,8 +13,8 @@
         <mat-card-actions>
 
             <mat-chip-list>
-                <div *ngFor="let category of post.categories">
-                    <mat-chip>{{category}}</mat-chip>
+                <div *ngFor="let cat of post.category">
+                    <mat-chip (click)="getPostsByCategory(cat._id)">{{cat.name}}</mat-chip>
                 </div>
             </mat-chip-list>          
             <br>

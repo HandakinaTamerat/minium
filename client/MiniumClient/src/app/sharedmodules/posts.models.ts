@@ -7,12 +7,12 @@ export class Post{
     user: User
     highFives: HighFive[]
     createdAt: Date
-    categories: string[]
+    category: string[]
     comments: Comment[]
 
     constructor(){
         this.highFives = []
-        this.categories = []
+        this.category = []
         this.comments = []
     }
 }
@@ -24,8 +24,9 @@ export class HighFive{
 }
  
 export class Comment{
+    _id: string
     body: string
     user: any
     createdAt: Date
-     
+    highFives: []
 }

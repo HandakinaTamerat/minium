@@ -23,7 +23,10 @@
     <div class="shadow-none p-3 mb-5 bg-light rounded">
         <p>
             {{comment.body}}
-            <span class="float-right">{{comment.user}}</span>
+            <br>
+            <span class="float-right">{{comment.user.first_name}} {{comment.user.last_name}}</span>
+            <br>
+            <span class="float-right">{{comment.createdAt | date}}</span>
         </p>
         
     </div>    
