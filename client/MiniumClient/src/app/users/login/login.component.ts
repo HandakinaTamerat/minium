@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     this.subscription=
     this.loginService.login(this.form.value).subscribe(data=>{
       this.saveToken(data);
+      
       this.goToHomePage();
     },error=>{
       if(error.error=="Invalid password") {
