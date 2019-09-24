@@ -13,14 +13,7 @@ import { Router } from '@angular/router';
 export class NewPostComponent implements OnInit {
 
   newPostForm: FormGroup
-  categoryList: any[] = [
-    { name: 'Startup ' },
-    { name: 'Life' },
-    { name: 'Politics' },
-    { name: 'Life Lesson' },
-    { name: 'Travel' },
-    { name: 'Entrepreneurship ' },
-  ]
+  categoryList: any[] = [{name:'test'}]
 
   loading: boolean = false;
   errorOccured: boolean = false;
@@ -38,9 +31,10 @@ export class NewPostComponent implements OnInit {
 
   async createForm() {
     try {
-      //this.categoryList = await this.postService.getUserData()
+      
+      
 
-      const formControls = this.categoryList.map(control => new FormControl(false));
+      let formControls = this.categoryList.map(control => new FormControl(false));
       let userData = this.postService.getUserData();
 
       this.newPostForm = this.fb.group({
@@ -52,6 +46,9 @@ export class NewPostComponent implements OnInit {
       }
 
       )
+      this.categoryList = await this.postService.getCategories()
+      formControls = this.categoryList.map(control => new FormControl(false));
+
     }
     catch (e) {
 
