@@ -14,4 +14,14 @@ export class AuthService {
   getToken(){
     return JSON.parse(localStorage.getItem("auth-token"));
   }
+
+  storeUser(user){
+    localStorage.setItem('user-data',user);
+  }
+
+  getUser(){
+    return localStorage.getItem('user-data');
+  }
+
+
 }

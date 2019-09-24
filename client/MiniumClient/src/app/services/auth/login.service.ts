@@ -19,4 +19,8 @@ export class LoginService {
     this.auth.storeToken(obj);
   }
 
+  storeUser(user){
+    this.auth.storeUser(user);
+  }
+
 }
