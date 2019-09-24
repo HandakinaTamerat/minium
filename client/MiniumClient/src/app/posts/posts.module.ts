@@ -6,17 +6,19 @@ import { PostListingComponent } from './post-listing/post-listing.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../sharedmodules/material.module';
-import { QuillModule } from 'ngx-quill'
+import { QuillModule } from 'ngx-quill';
+import { CategoriesComponent } from './categories/categories.component'
 
 const routes: Routes = [
   {path:'newpost', component: NewPostComponent},
+  {path:'categories',component:CategoriesComponent},
   {path:':postId', component: SinglePostComponent},
   {path:'', component: PostListingComponent}
 ]
 
 
 @NgModule({
-  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent],
+  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent, CategoriesComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
