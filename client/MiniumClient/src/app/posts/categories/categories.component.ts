@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../posts.service';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/sharedmodules/category.models';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { User } from 'src/app/sharedmodules/user.models';
 
 @Component({
   selector: 'app-categories',
@@ -10,10 +12,12 @@ import { Category } from 'src/app/sharedmodules/category.models';
 })
 export class CategoriesComponent implements OnInit {
   public categories:Category;
-  constructor(private service:PostsService,private route:Router) { }
+  public selectedCategories:string[]=[];
+  constructor(private service:PostsService,private route:Router,private auth:AuthService) { }
 
   ngOnInit() {
-    this.getCategories();
+    console.log(JSON.parse(this.auth.getUser()));
+        this.getCategories();
   }
 
   async getCategories() {
@@ -24,6 +28,25 @@ export class CategoriesComponent implements OnInit {
     } catch(e) {
       console.log(e)
     }
+  }
+
+  onCategorySelect(category){
+    const selCat=this.categories[category]._id;
+    if(this.selectedCategories.includes(selCat)){
+      //remove category
+      this.selectedCategories=this.selectedCategories.filter(cat=> cat!=selCat   );
+    }else{
+      //add category
+      this.selectedCategories.push(selCat)
+    }
+    const user=JSON.parse(this.auth.getUser());
+    user.categories=this.selectedCategories;
+    this.auth.upDateUser(user).subscribe(data=>{
+      console.log(data);
+    },err=>{
+      console.log(err);
+    });
+
   }
 
 

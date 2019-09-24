@@ -7,9 +7,9 @@
             <span [ngClass]="name">
               {{ category.name }}
             </span>
-            <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
-              <mat-icon *ngIf="num!=2">add_circle</mat-icon>
-              <mat-icon *ngIf="num==2">check_circle</mat-icon>
+            <button mat-icon-button color="accent" (click)="onCategorySelect(num)">
+              <mat-icon *ngIf="!(selectedCategories.includes(categories[num]._id))">add_circle</mat-icon>
+              <mat-icon *ngIf="selectedCategories.includes(categories[num]._id)">check_circle</mat-icon>
               </button>
           </mat-card-title>
           <mat-card-subtitle>

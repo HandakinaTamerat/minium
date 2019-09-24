@@ -30,6 +30,10 @@ api=env.apiUrl;
     return localStorage.getItem('user-data');
   }
 
+  upDateUser(user){
+    return this.http.put(`${this.api}/users/${user._id}`,user);
+  }
+
   isUserLoggedIn() {
     if( localStorage.getItem('auth-token') == null ) {
       return false
