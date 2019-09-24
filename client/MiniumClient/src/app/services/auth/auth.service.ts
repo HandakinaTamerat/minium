@@ -23,5 +23,11 @@ export class AuthService {
     return localStorage.getItem('user-data');
   }
 
+  isUserLoggedIn() {
+    if( localStorage.getItem('auth-token') == null ) {
+      return false
+    }
+    return true
+  }
 
 }
