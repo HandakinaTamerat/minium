@@ -18,5 +18,8 @@ export class RegisterService {
   storeToken(data){
     this.authService.storeToken(data);
   }
+  storeUser(user){
+    this.authService.storeUser(user);
+  }
 
 }
