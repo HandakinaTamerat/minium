@@ -11,8 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class PostsService {
   getPostsUrl = `${environment.apiUrl}/posts/page`
-  newPostUrl = `${environment.apiUrl}/post`
-  getSinglePostUrl = `${environment.apiUrl}/:postId=`
+  newPostUrl = `${environment.apiUrl}/posts`
+  getSinglePostUrl = `${environment.apiUrl}/posts/`
   getUserPostsUrl = `${environment.apiUrl}/userId=`
   getCategoriesUrl = `${environment.apiUrl}/categories`
   highFiveUrl = `${environment.apiUrl}/posts/`
@@ -45,8 +45,8 @@ export class PostsService {
     localStorage.getItem("user")
   }
 
-  highFive(body: any, id: string):Observable<any>{
-    return this.http.put(this.highFiveUrl + id , body)
+  highFive(id: string):Observable<any>{
+    return this.http.post(this.highFiveUrl + id + "/highfive",{})
   }
 
   newComment(){
