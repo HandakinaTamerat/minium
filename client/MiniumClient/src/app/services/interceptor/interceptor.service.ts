@@ -12,7 +12,6 @@ export class InterceptorService implements HttpInterceptor {
   authApi=env.authApiUrl;
   constructor(private authService:AuthService,private route:Router) { }
   intercept(req: HttpRequest<any>, next: HttpHandler,): Observable<HttpEvent<any>> {
-    console.log(JSON.stringify(req));
     let authReq;
     if(this.authService.getToken()){
       console.log('yo.')
