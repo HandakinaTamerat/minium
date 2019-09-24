@@ -1,11 +1,24 @@
+<h2>Explore Topic</h2>
+<hr>
+<mat-grid-list cols="3" >
+  <mat-grid-tile *ngFor="let category of categories;let num=index">
+      <mat-card >
+          <mat-card-title>
+            <span [ngClass]="name">
+              {{ category.name }}
+            </span>
+            <button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
+              <mat-icon *ngIf="num!=2">add_circle</mat-icon>
+              <mat-icon *ngIf="num==2">check_circle</mat-icon>
+              </button>
+          </mat-card-title>
+          <mat-card-subtitle>
+            <hr>
+          </mat-card-subtitle>
+          <mat-card-content>
+              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          </mat-card-content>
+        </mat-card>
 
-
-<mat-card *ngFor="let category of categories">
-  <mat-card-title>
-      {{ category }}
-  </mat-card-title>
-  <mat-card-content>
-
-    
-  </mat-card-content>
-</mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
