@@ -16,7 +16,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent],
+  declarations: [NewPostComponent, SinglePostComponent, PostListingComponent, PostListingComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
