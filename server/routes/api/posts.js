@@ -8,7 +8,7 @@ const router = express.Router();
 
 // get all posts
 router.get('/page/:page?', verifyToken, async (req, res) => {
-  const resPerPage = 10; // results per page
+  const resPerPage = 9; // results per page
   const page = req.params.page || 1; // Page 
   const posts = await Post.find({}).sort({'createdAt': -1}).populate('user', User)
   .skip((resPerPage * page) - resPerPage)
