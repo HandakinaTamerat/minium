@@ -14,7 +14,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.subscription=this.service.getCategories().subscribe(data=>{
-        this.categories=data;
+      this.categories=data.map(elem=>elem.name);
     },err=>{
       this.route.navigate(['/users/login']);
     })
