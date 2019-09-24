@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import {
   MatButtonModule,
   MatMenuModule,
-  MatIconModule,
   MatCardModule,
   MatSidenavModule,
   MatFormFieldModule,
@@ -38,7 +37,7 @@ const modules =  [
   MatDividerModule,
   MatPaginatorModule,
   MatIconModule
-  
+
   ];
 
   @NgModule({
