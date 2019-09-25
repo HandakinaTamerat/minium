@@ -5,7 +5,7 @@
         <div class=" p-3 mb-2 mt-2">
             <span *ngFor="let cat of categories; let i=index">
                 <span *ngIf="i < 8">
-                    <a [hidden]="!isLogged" mat-button class="nav-link" (click)="getCategoryPosts(cat)">{{cat.name}}</a>
+                    <a [hidden]="!isLogged" mat-button class="nav-link" (click)="getCategoryPosts(cat._id)">{{cat.name}}</a>
                 </span>
 
             </span>
@@ -31,8 +31,9 @@
             </div>
         </div>
     </div>
+    <div class="row text-center" *ngIf="posts.length < 1"><h6 class="pt-10 m-auto">0 posts found</h6></div>
 
-    <div class="row">
+    <div class="row" *ngIf="posts.length > 1">
         <div class="col"></div>
         <div class="col-3 text-center mb-5">
             <div class="paginator text-center m-3">

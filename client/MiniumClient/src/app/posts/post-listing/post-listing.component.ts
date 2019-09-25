@@ -41,7 +41,7 @@ export class PostListingComponent implements OnInit {
   }
   async getCategories(){
     try{
-      this.categories = await this.postsService.getCategories()
+      this.categories = this.authService.getUser()['categories'];
     }
     catch(e){
 
@@ -56,6 +56,15 @@ export class PostListingComponent implements OnInit {
   }
   navigateToPost(id:string){
     this.router.navigate(['/posts/'+id])
+  }
+  async getCategoryPosts(id:string){
+    try{
+      this.posts = await this.postsService.getCategoryPosts(id)
+      this.posts.forEach((elm)=>{return elm['image'] = this.getImageIndex()})
+    }
+    catch(e){
+
+    }
   }
 
   async navigatePagination(nb: number) {
