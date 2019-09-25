@@ -71,7 +71,7 @@ export class NewPostComponent implements OnInit {
     this.createForm()
   }
   postSuccess(id) {
-    this.router.navigate['/posts/' + id]
+    this.router.navigate(['/posts/' + id])
     this.loading = false;
     this.errorOccured = false;
   }
