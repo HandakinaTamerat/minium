@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostsService } from '../posts.service';
 import { Post } from 'src/app/sharedmodules/posts.models';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-post-listing',
@@ -14,15 +15,36 @@ export class PostListingComponent implements OnInit {
   public length: number;
   public pageNb: number = 1;
 
-  constructor(private postsService: PostsService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  categories: []
+  isLogged: boolean
+
+  constructor(private postsService: PostsService, private router: Router, private activatedRoute: ActivatedRoute,private authService: AuthService) { }
 
   ngOnInit() {
     this.getPosts()
+    this.getCategories();
+
+    this.isLogged = this.authService.isUserLoggedIn()
+
+    this.authService.isLoggedEmitter.on('message',()=>{
+      this.isLogged = true
+    })
   }
 
   async getPosts() {
     this.posts = await this.postsService.getPosts(this.pageNb);
     this.length = this.posts.length
+  }
+  async getCategories(){
+    try{
+      this.categories = await this.postsService.getCategories()
+    }
+    catch(e){
+
+    }
+  }
+  nagivateToCategories(){
+    this.router.navigate(['/posts/categories'])
   }
 
   async navigatePagination(nb: number) {
