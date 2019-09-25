@@ -8,6 +8,12 @@ const userSchema = new Schema({
     first_name: String,
     last_name: String,
     username: String,
+    categories: [
+        {
+            type: Schema.Types.ObjectId, 
+            ref: 'categories' 
+        }
+    ],
     followers: [
         {
             type: Schema.Types.ObjectId, 

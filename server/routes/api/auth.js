@@ -20,7 +20,7 @@ router.post('/register', (req, res) => {
           res.status(403).send({err})
       } else {
           let token = generateAccessToken(createdUser)
-          res.status(200).send({token, user: createdUser.username})
+          res.status(200).send({token, user: createdUser})
       }
   })
 })

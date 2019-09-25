@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
 
     this.form=this.builder.group({
-      'email':['',[Validators.required,Validators.email],this.emailValidation.bind(this)],
+      'email':['',[Validators.required,Validators.email]],
       'first_name':['',Validators.required],
       'last_name':['',Validators.required],
       'username':['',Validators.required],
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
   }
 
   saveToken(data){
-    this.registerService.storeToken(data);
+    this.registerService.storeToken(JSON.stringify(data));
   }
 
   goToHomePage(){
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
   }
 
   saveUserData(user){
-    this.registerService.storeUser(user);
+    this.registerService.storeUser(JSON.stringify(user));
   }
 
   redirectToLogin(){

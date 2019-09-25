@@ -104,4 +104,19 @@ router.post('/emailcheck', async (req, res) => {
         return res.status(200).send(false)
 })
 
+router.put('/:id', verifyToken, async (req, res) => {
+    console.log(req.body);
+    const filter = {_id: req.params.id}
+    const update = {...req.body}
+    // new:true to return the document after update
+    let user;
+    try {
+      user = await User.findOneAndUpdate(filter, update, {new: true})
+    } catch(e) {
+        console.dir(e);
+        res.status(401).send(e)
+    }
+    return res.status(200).send(user)
+})
+
 module.exports = router;
