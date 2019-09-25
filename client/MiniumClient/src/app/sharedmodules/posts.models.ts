@@ -3,6 +3,7 @@ import { User } from './user.models'
 export class Post{
     _id: string
     title: string
+    subTitle: string
     content: String
     user: User
     highFives: HighFive[]
