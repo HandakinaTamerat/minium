@@ -37,6 +37,7 @@ export class NewPostComponent implements OnInit {
      
       this.newPostForm = this.fb.group({
         title: ['', Validators.required],
+        subTitle: ['', Validators.required],
         user: [''],
         content: ['', Validators.required],
         categoriesMappings: new FormArray(formControls),
