@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="card col-12 " *ngFor="let post of posts">
-            <div class="row no-gutters">
+            <div class="row no-gutters post-items" (click)="navigateToPost(post._id)">
                 <div class="col-md-3">
                     <img src="/assets/imgs/temp_images/{{post['image']}}.png" class="card-img" alt="...">
                 </div>

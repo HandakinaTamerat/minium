@@ -54,6 +54,9 @@ export class PostListingComponent implements OnInit {
   nagivateToCategories(){
     this.router.navigate(['/posts/categories'])
   }
+  navigateToPost(id:string){
+    this.router.navigate(['/posts/'+id])
+  }
 
   async navigatePagination(nb: number) {
     this.pageNb += nb
