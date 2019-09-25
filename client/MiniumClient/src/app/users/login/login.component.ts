@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/sharedmodules/user.models';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   form;
   subscription;
   error;
-  constructor(private builder:FormBuilder,private route:Router,private loginService:LoginService) { }
+  constructor(private builder:FormBuilder,private route:Router,private loginService:LoginService, private authService: AuthService) { }
 
   ngOnInit() {
     this.form=this.builder.group({
@@ -33,6 +34,8 @@ export class LoginComponent implements OnInit {
       this.saveToken(JSON.stringify(data["token"]));
       this.saveUserData(JSON.stringify(data["user"]));
       this.goToHomePage();
+      this.authService.isLoggedEmitter.emit('message')
+      
     },error=>{
       if(error.error=="Invalid Password") {
         this.error=error.error;
