@@ -13,9 +13,10 @@ export class PostsService {
   getPostsUrl = `${environment.apiUrl}/posts/page`
   postUrl = `${environment.apiUrl}/posts`
   getSinglePostUrl = `${environment.apiUrl}/posts/`
-  getUserPostsUrl = `${environment.apiUrl}/userId=`
+  getUserPostsUrl = `${environment.apiUrl}/user`
   getCategoriesUrl = `${environment.apiUrl}/categories`
   highFiveUrl = `${environment.apiUrl}/posts/`
+  userCategories = `${environment.apiUrl}/users/categories`
 
   constructor(public http: HttpClient) { }
 
@@ -23,11 +24,14 @@ export class PostsService {
     return this.http.get<Post[]>(`${this.getPostsUrl}/${pageNumber}`).toPromise()
   }
 
-  getUserPosts(userId: string):Promise<Post[]>{
-    return this.http.get<Post[]>(this.getUserPostsUrl + userId).toPromise()
+  getUserPosts(pageNumber: number):Promise<Post[]>{
+    return this.http.get<Post[]>(`${this.getUserPostsUrl}/${pageNumber}`).toPromise()
   }
   getCategoryPosts(categoryId: string):Promise<Post[]>{
     return this.http.get<Post[]>(this.postUrl + "/category/" + categoryId).toPromise()
+  }
+  getUserCategories(){
+    return this.http.get<[]>(this.userCategories).toPromise()
   }
 
   newPost(body: Post):Observable<any>{

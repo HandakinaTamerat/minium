@@ -35,7 +35,7 @@ authApi=env.authApiUrl;
   }
 
   upDateUser(user){
-    return this.http.put(`${this.api}/users/${user._id}`,user);
+    return this.http.put(`${environment.apiUrl}/users/${user._id}`,user);
   }
 
   isUserLoggedIn() {

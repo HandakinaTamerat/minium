@@ -37,14 +37,22 @@ router.get('/category/:category', verifyToken, async (req, res) => {
       $in: [req.params.category]
     }
   }).populate('user', User)
+  
   return res.status(200).send(posts)
 })
 
 // get user's posts
-router.get('/user', verifyToken, async (req, res) => {
+router.get('/user/:page?', verifyToken, async (req, res) => {
+
+  const resPerPage = 9; // results per page
+  const page = req.params.page || 1; // Page 
   const posts = await Post.find({
     user: req.user
   })
+  .sort({'createdAt': -1})
+  .populate('user', User)
+  .skip((resPerPage * page) - resPerPage)
+  .limit(resPerPage)
   return res.status(200).send(posts)
 })
 
