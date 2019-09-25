@@ -86,23 +86,7 @@ async function canFollow(followed, follower) {
     }
 }
 
-router.post('/emailcheck', async (req, res) => {
 
-    const email = req.body.email
-    let count
-    try {
-        count = await User.count({
-        email: email
-        })
-    } catch (e) {
-        return res.status(402).send('problem trying to find a user with this email')
-    }
-    
-    if(count > 0) {
-        return res.status(200).send(true)
-    }
-        return res.status(200).send(false)
-})
 
 router.put('/:id', verifyToken, async (req, res) => {
     console.log(req.body);

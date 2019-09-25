@@ -6,6 +6,27 @@ var bcrypt = require('bcryptjs');
 
 const router = express.Router();
 
+router.post('/emailcheck', async (req, res) => {
+
+    const email = req.body.email
+    let count=0;
+    try {
+        count = await User.count({
+        email: email
+        })
+
+    } catch (e) {
+        return res.status(402).send('problem trying to find a user with this email')
+    }
+
+    if(count > 0) {
+        return res.status(200).send(true)
+    }
+    console.log(count);
+        return res.status(200).send(false)
+    
+})
+
 // Register
 router.post('/register', (req, res) => {
   const userBody = new User(req.body)

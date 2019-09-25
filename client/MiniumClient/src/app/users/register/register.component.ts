@@ -14,13 +14,8 @@ export class RegisterComponent implements OnInit {
   constructor(private builder:FormBuilder,private route:Router,private registerService:RegisterService) { }
 
   ngOnInit() {
-    this.registerService.checkUserEmail("kinlslso@gmail.com").subscribe(x=>{
-      console.log("ems",x);
-    });
-
-
     this.form=this.builder.group({
-      'email':['',[Validators.required,Validators.email]],
+      'email':['',[Validators.required,Validators.email],this.emailValidation.bind(this)],
       'first_name':['',Validators.required],
       'last_name':['',Validators.required],
       'username':['',Validators.required],
@@ -29,8 +24,15 @@ export class RegisterComponent implements OnInit {
   }
 
    emailValidation(control:FormControl):Promise<any> | Observable<any>{
-    const promise=this.registerService.checkUserEmail(control.value).toPromise();
 
+    const promise=new Promise(async (res,rej)=>{
+        const val=await this.registerService.checkUserEmail(control.value).toPromise();
+        if(!val){
+          res(null);
+        }else{
+          res('INVALID');
+        }
+    });
     return promise;
   }
 
