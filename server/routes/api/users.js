@@ -119,4 +119,18 @@ router.put('/:id', verifyToken, async (req, res) => {
     return res.status(200).send(user)
 })
 
+//get categories of user
+router.get('/categories', verifyToken, async (req, res) => {
+
+    let categories;
+    try {
+      let user = await User.findById(req.user._id).populate('categories')
+      categories = user['categories']
+    } catch(e) {
+        console.log(e);
+        res.status(401).send(e)
+    }
+    return res.status(200).send(categories)
+})
+
 module.exports = router;
