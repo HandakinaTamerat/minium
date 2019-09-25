@@ -34,7 +34,7 @@ export class PostListingComponent implements OnInit {
   }
 
   async getPosts() {
-    this.posts = await this.postsService.getPosts(this.pageNb);
+    this.posts = await this.postsService.getUserPosts(this.pageNb);
     this.length = this.posts.length
     this.posts.forEach((elm)=>{return elm['image'] = this.getImageIndex()})
  
@@ -42,7 +42,7 @@ export class PostListingComponent implements OnInit {
   async getCategories(){
     try{
       this.categories = await this.postsService.getUserCategories()
-      console.log(this.categories)
+       
     }
     catch(e){
 
