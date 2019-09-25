@@ -9,7 +9,8 @@ import { EventEmitter } from 'events';
   providedIn: 'root'
 })
 export class AuthService {
-api=env.authApiUrl;
+api=env.apiUrl;
+authApi=env.authApiUrl;
   isLoggedEmitter: EventEmitter = new EventEmitter();
   constructor(private http:HttpClient, public jwtHelper: JwtHelperService) { }
 
@@ -18,7 +19,7 @@ api=env.authApiUrl;
   }
 
   checkEmail(email){
-    return this.http.post(`${this.api}/users/emailcheck`,email);
+    return this.http.post(`${this.authApi}/emailcheck`,{email:email});
   }
 
   getToken(){
