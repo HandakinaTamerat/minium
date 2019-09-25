@@ -33,10 +33,13 @@ api=env.authApiUrl;
     return localStorage.getItem('user-data');
   }
 
+  upDateUser(user){
+    return this.http.put(`${this.api}/users/${user._id}`,user);
+  }
+
   isUserLoggedIn() {
     let token = localStorage.getItem('auth-token')
     return !this.jwtHelper.isTokenExpired(token);
-    
   }
 
 
