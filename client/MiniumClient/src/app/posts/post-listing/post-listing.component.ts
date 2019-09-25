@@ -14,9 +14,11 @@ export class PostListingComponent implements OnInit {
   public posts: Post[];
   public length: number;
   public pageNb: number = 1;
+  
 
   categories: []
   isLogged: boolean
+
 
   constructor(private postsService: PostsService, private router: Router, private activatedRoute: ActivatedRoute,private authService: AuthService) { }
 
@@ -34,6 +36,7 @@ export class PostListingComponent implements OnInit {
   async getPosts() {
     this.posts = await this.postsService.getPosts(this.pageNb);
     this.length = this.posts.length
+    this.posts.forEach((elm)=>{return elm['image'] = this.getImageIndex()})
   }
   async getCategories(){
     try{
@@ -42,6 +45,10 @@ export class PostListingComponent implements OnInit {
     catch(e){
 
     }
+  }
+
+  getImageIndex(){
+    return Math.floor(Math.random() * 5) + 1; 
   }
   nagivateToCategories(){
     this.router.navigate(['/posts/categories'])

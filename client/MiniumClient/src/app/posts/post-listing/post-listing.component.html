@@ -9,42 +9,42 @@
                 </span>
 
             </span>
-           
-                <a [hidden]="!isLogged" mat-button class="nav-link float-right" (click)="nagivateToCategories()">More</a>
-            
+
+            <a [hidden]="!isLogged" mat-button class="nav-link float-right" (click)="nagivateToCategories()">More</a>
+
         </div>
 
     </div>
     <div class="row">
-        <div class="col-4" *ngFor="let post of posts">
-            <mat-card class="example-card">
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>{{post.title}}</mat-card-title>
-                    <mat-card-subtitle>{{post.categories}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                    alt="Photo of a Shiba Inu">
-                <mat-card-content>
-                    <p>
-                        {{post.content | slice:0:20}}
-                    </p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>LIKE</button>
-                    <button mat-button>FOLLOW</button>
-                </mat-card-actions>
-            </mat-card>
+        <div class="card col-12 " *ngFor="let post of posts">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <img src="/assets/imgs/temp_images/{{post['image']}}.png" class="card-img" alt="...">
+                </div>
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post.title}}</h5>
+                        <p class="card-text">{{post.content | slice:0:20}}</p>
+                        <p class="card-text"><small class="text-muted">{{post.createdAt | date}}</small></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="row">
-        <div class="paginator">
-            <button mat-mini-fab color="primary" (click)="navigatePagination(-1)">
-                <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon>
-            </button>
-            <button mat-mini-fab color="primary" (click)="navigatePagination(1)">
-                <mat-icon aria-hidden="false">keyboard_arrow_right</mat-icon>
-            </button>
+        <div class="col"></div>
+        <div class="col-3 text-center mb-5">
+            <div class="paginator text-center m-3">
+                <button mat-mini-fab color="primary" (click)="navigatePagination(-1)">
+                    <mat-icon aria-hidden="false">keyboard_arrow_left</mat-icon>
+                </button>
+                <button mat-mini-fab color="primary" (click)="navigatePagination(1)">
+                    <mat-icon aria-hidden="false">keyboard_arrow_right</mat-icon>
+                </button>
+            </div>
         </div>
+        <div class="col"></div>
     </div>
+
 </div>
