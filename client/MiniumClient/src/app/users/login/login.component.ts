@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   }
 
   goToHomePage(){
-    this.route.navigate(['/posts/home']);
+    this.route.navigate(['/posts/page/1']);
   }
 
   redirectToRigester(){

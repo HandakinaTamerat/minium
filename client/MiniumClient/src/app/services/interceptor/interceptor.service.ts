@@ -23,7 +23,7 @@ export class InterceptorService implements HttpInterceptor {
       if(req.url==`${this.authApi}/login` || req.url==`${this.authApi}/register` || req.url==`${this.authApi}/users/checkemail` ){
           authReq=req;
       }else{
-          this.route.navigate(['/users/login']);
+          //this.route.navigate(['/users/login']);
       }
     }
     return next.handle(authReq);

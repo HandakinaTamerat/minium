@@ -26,6 +26,9 @@ export class PostsService {
   getUserPosts(userId: string):Promise<Post[]>{
     return this.http.get<Post[]>(this.getUserPostsUrl + userId).toPromise()
   }
+  getCategoryPosts(categoryId: string):Promise<Post[]>{
+    return this.http.get<Post[]>(this.postUrl + "/category/" + categoryId).toPromise()
+  }
 
   newPost(body: Post):Observable<any>{
     //const headers = new HttpHeaders({'Content-Type': 'application/json'});
@@ -40,6 +43,7 @@ export class PostsService {
   getCategories():Promise<any>{
     return this.http.get<any>(this.getCategoriesUrl).toPromise()
   }
+  
 
   getUserData():any{
     localStorage.getItem("user")

@@ -37,6 +37,7 @@ export class NewPostComponent implements OnInit {
      
       this.newPostForm = this.fb.group({
         title: ['', Validators.required],
+        subTitle: ['', Validators.required],
         user: [''],
         content: ['', Validators.required],
         categoriesMappings: new FormArray(formControls),
@@ -70,7 +71,7 @@ export class NewPostComponent implements OnInit {
     this.createForm()
   }
   postSuccess(id) {
-    this.router.navigate['/posts/' + id]
+    this.router.navigate(['/posts/' + id])
     this.loading = false;
     this.errorOccured = false;
   }
