@@ -41,7 +41,8 @@ export class PostListingComponent implements OnInit {
   }
   async getCategories(){
     try{
-      this.categories = this.authService.getUser()['categories'];
+      this.categories = await this.postsService.getUserCategories()
+      console.log(this.categories)
     }
     catch(e){
 
