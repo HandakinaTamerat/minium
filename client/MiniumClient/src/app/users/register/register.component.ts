@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
       console.log("ems",x);
     });
 
-
     this.form=this.builder.group({
       'email':['',[Validators.required,Validators.email]],
       'first_name':['',Validators.required],
