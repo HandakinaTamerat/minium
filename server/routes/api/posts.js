@@ -43,6 +43,7 @@ router.get('/category/:category', verifyToken, async (req, res) => {
 
 // get user's posts
 router.get('/user/:page?', verifyToken, async (req, res) => {
+
   const resPerPage = 9; // results per page
   const page = req.params.page || 1; // Page 
   const posts = await Post.find({
