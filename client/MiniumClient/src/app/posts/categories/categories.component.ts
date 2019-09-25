@@ -34,7 +34,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   onCategorySelect(category){
-    if(this.categories[category]._id){
+    if(this.categories[category]["_id"]){
       const selCat=this.categories[category]._id;
       if(this.selectedCategories.includes(selCat)){
         //remove category
