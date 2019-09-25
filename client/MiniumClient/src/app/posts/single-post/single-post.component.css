@@ -4,3 +4,6 @@
     margin-top: px;
     width: 100%;
 }
+.post-content img{
+    width: 100%!important
+}

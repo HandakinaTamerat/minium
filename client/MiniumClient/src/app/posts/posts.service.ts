@@ -13,7 +13,7 @@ export class PostsService {
   getPostsUrl = `${environment.apiUrl}/posts/page`
   postUrl = `${environment.apiUrl}/posts`
   getSinglePostUrl = `${environment.apiUrl}/posts/`
-  getUserPostsUrl = `${environment.apiUrl}/user`
+  getUserPostsUrl = `${environment.apiUrl}/posts/user`
   getCategoriesUrl = `${environment.apiUrl}/categories`
   highFiveUrl = `${environment.apiUrl}/posts/`
   userCategories = `${environment.apiUrl}/users/categories`
