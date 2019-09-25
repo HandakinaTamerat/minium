@@ -2,13 +2,16 @@
     <mat-card class="example-card">
         <h2>{{post.title}}</h2>
         <mat-card-header>
-            <div mat-card-avatar class="example-header-image"><img src="assets/imgs/profile_icon.png" width="40px">
+            <div mat-card-avatar class="example-header-image">
+              <img src="assets/imgs/profile_icon.png" width="40px">
             </div>
             <mat-card-title>{{post.user.first_name}} {{post.user.last_name}}</mat-card-title>
             <mat-card-subtitle>{{post.createdAt | date}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content id='post-content'>
-            <div [innerHTML]="post.content" ></div>
+
+            <div style="overflow: hidden;" [innerHTML]="post.content"></div>
+
         </mat-card-content>
         <mat-card-actions>
 
@@ -16,7 +19,7 @@
                 <div *ngFor="let cat of post.category">
                     <mat-chip (click)="getPostsByCategory(cat._id)">{{cat.name}}</mat-chip>
                 </div>
-            </mat-chip-list>          
+            </mat-chip-list>
             <br>
 
             <button (click)='highfive()' mat-mini-fab color="primary">

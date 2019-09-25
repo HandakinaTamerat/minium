@@ -24,6 +24,7 @@ export class CategoriesComponent implements OnInit {
     try {
       const val = await this.service.getCategories();
       this.categories=val;
+      this.categories.forEach((elm)=>{return elm['image'] = this.getImageIndex()})
       console.log(JSON.parse(this.auth.getUser()));
       for(let each of JSON.parse(this.auth.getUser()).categories) {
         this.selectedCategories.push(each);
@@ -34,8 +35,8 @@ export class CategoriesComponent implements OnInit {
   }
 
   onCategorySelect(category){
-    if(this.categories[category]._id){
-      const selCat=this.categories[category]._id;
+    if(this.categories[category]["_id"]){
+      const selCat=this.categories[category]["_id"];
       if(this.selectedCategories.includes(selCat)){
         //remove category
         this.selectedCategories=this.selectedCategories.filter(cat=> cat!=selCat   );
@@ -53,6 +54,10 @@ export class CategoriesComponent implements OnInit {
       });
     }
 
+  }
+
+  getImageIndex(){
+    return Math.floor(Math.random() * 5) + 1;
   }
 
 
